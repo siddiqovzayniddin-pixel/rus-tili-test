@@ -241,7 +241,7 @@ h1 span { color: var(--accent); font-style: italic; }
 </head>
 <body>
 <div class="container">
-  <div class="header">
+<div class="header" id="mainHeader">
     <div class="badge">🇷🇺 Rus Tili Testi</div>
     <h1>Darajangizni<br><span>aniqlang</span></h1>
     <p class="subtitle">Darajangizni tanlang — lug'at, grammatika va urg'u bo'yicha 15 ta savol yeching. AI tahlil bilan shaxsiy o'qish rejasi oling!</p>
@@ -532,6 +532,7 @@ function pickLevel(lvl) {
 
 function startQuiz() {
   if (!selLvl) return;
+  document.getElementById('mainHeader').style.display = 'none';
   qs = [...QS[selLvl]].sort(() => Math.random() - 0.5);
   cur = 0; correct = 0;
   showScr('quizScreen');
@@ -669,6 +670,7 @@ function getRm(l) {
 
 function goHome() {
   selLvl = null;
+  document.getElementById('mainHeader').style.display = 'block';
   Object.keys(LVL_INFO).forEach(l => {
     const c = document.getElementById('card-'+l);
     c.style.borderColor = '';
