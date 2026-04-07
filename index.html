@@ -7,247 +7,161 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #f5f0e8;
-  --surface: #fffdf8;
-  --card: #ffffff;
-  --border: #e0d8cc;
-  --border2: #d4c9b8;
-  --accent: #c8873a;
-  --accent-light: #f5e6d3;
-  --text: #2c2416;
-  --muted: #8a7a65;
-  --muted2: #b5a590;
-  --success: #3d8b5f;
-  --success-bg: #eaf5ef;
-  --danger: #b84040;
-  --danger-bg: #fbeaea;
-  --A1: #4a90d9; --A1bg: #e8f2fb;
-  --A2: #2a9d8f; --A2bg: #e4f5f3;
-  --B1: #57a057; --B1bg: #eaf4ea;
-  --B2: #e07c2a; --B2bg: #fdf0e4;
-  --C1: #c0436a; --C1bg: #fbedf2;
-  --C2: #7b5ea7; --C2bg: #f3eefb;
+  --bg:#f5f0e8;--surface:#fffdf8;--card:#ffffff;--border:#e0d8cc;--border2:#d4c9b8;
+  --accent:#c8873a;--accent-light:#f5e6d3;--text:#2c2416;--muted:#8a7a65;--muted2:#b5a590;
+  --success:#3d8b5f;--success-bg:#eaf5ef;--danger:#b84040;--danger-bg:#fbeaea;
+  --A1:#4a90d9;--A1bg:#e8f2fb;--A2:#2a9d8f;--A2bg:#e4f5f3;
+  --B1:#57a057;--B1bg:#eaf4ea;--B2:#e07c2a;--B2bg:#fdf0e4;
+  --C1:#c0436a;--C1bg:#fbedf2;--C2:#7b5ea7;--C2bg:#f3eefb;
 }
-* { margin:0; padding:0; box-sizing:border-box; }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Nunito', sans-serif;
-  min-height: 100vh;
-  background-image:
-    radial-gradient(circle at 10% 20%, rgba(200,135,58,.07) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(74,144,217,.06) 0%, transparent 40%);
-}
-.container { max-width: 800px; margin: 0 auto; padding: 40px 20px 80px; }
-.screen { display: none; }
-.screen.active { display: block; animation: fadeUp .4s ease; }
-@keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Nunito',sans-serif;min-height:100vh;
+  background-image:radial-gradient(circle at 10% 20%,rgba(200,135,58,.07) 0%,transparent 40%),
+  radial-gradient(circle at 90% 80%,rgba(74,144,217,.06) 0%,transparent 40%);}
+.container{max-width:800px;margin:0 auto;padding:40px 20px 80px;}
+.screen{display:none;}.screen.active{display:block;animation:fadeUp .4s ease;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
 
-/* HEADER */
-.header { text-align: center; margin-bottom: 44px; }
-.badge {
-  display: inline-flex; align-items: center; gap: 7px;
-  background: var(--accent-light); border: 1px solid #e8c89a;
-  color: var(--accent); padding: 6px 18px; border-radius: 100px;
-  font-size: 11px; font-weight: 700; letter-spacing: 2px;
-  text-transform: uppercase; margin-bottom: 20px;
-}
-h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(28px, 5vw, 50px);
-  font-weight: 900; line-height: 1.1; color: var(--text); margin-bottom: 12px;
-}
-h1 span { color: var(--accent); font-style: italic; }
-.subtitle { color: var(--muted); font-size: 15px; line-height: 1.7; max-width: 460px; margin: 0 auto; }
+.header{text-align:center;margin-bottom:44px;}
+.badge{display:inline-flex;align-items:center;gap:7px;background:var(--accent-light);
+  border:1px solid #e8c89a;color:var(--accent);padding:6px 18px;border-radius:100px;
+  font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;}
+h1{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,50px);font-weight:900;
+  line-height:1.1;color:var(--text);margin-bottom:12px;}
+h1 span{color:var(--accent);font-style:italic;}
+.subtitle{color:var(--muted);font-size:15px;line-height:1.7;max-width:460px;margin:0 auto;}
 
-/* INFO BOX */
-.info-hint {
-  background: var(--accent-light); border: 1px solid #e8c89a;
-  border-radius: 14px; padding: 14px 20px; text-align: center;
-  font-size: 14px; color: var(--accent); font-weight: 600; margin-bottom: 28px;
-}
+.info-hint{background:var(--accent-light);border:1px solid #e8c89a;border-radius:14px;
+  padding:14px 20px;text-align:center;font-size:14px;color:var(--accent);font-weight:600;margin-bottom:28px;}
 
-/* LEVEL CARDS */
-.levels-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 28px; }
-.level-card {
-  background: var(--card); border: 2px solid var(--border);
-  border-radius: 20px; padding: 22px 14px; text-align: center;
-  cursor: pointer; transition: all .25s; position: relative; overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,.04);
-}
-.level-card:hover { transform: translateY(-5px); box-shadow: 0 12px 32px rgba(0,0,0,.1); }
-.level-emoji { font-size: 26px; margin-bottom: 8px; }
-.level-tag { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 900; margin-bottom: 5px; }
-.level-name { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
-.level-desc { font-size: 11px; color: var(--muted); line-height: 1.5; }
-.lv-pill {
-  position: absolute; top: 10px; right: 10px;
-  font-size: 10px; font-weight: 700; padding: 3px 8px;
-  border-radius: 100px; text-transform: uppercase; letter-spacing: 1px;
-}
+.levels-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px;}
+.level-card{background:var(--card);border:2px solid var(--border);border-radius:20px;
+  padding:22px 14px;text-align:center;cursor:pointer;transition:all .25s;position:relative;
+  overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.level-card:hover{transform:translateY(-5px);box-shadow:0 12px 32px rgba(0,0,0,.1);}
+.level-emoji{font-size:26px;margin-bottom:8px;}
+.level-tag{font-family:'Playfair Display',serif;font-size:26px;font-weight:900;margin-bottom:5px;}
+.level-name{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.level-desc{font-size:11px;color:var(--muted);line-height:1.5;}
+.lv-pill{position:absolute;top:10px;right:10px;font-size:10px;font-weight:700;
+  padding:3px 8px;border-radius:100px;text-transform:uppercase;letter-spacing:1px;}
 
-/* QUICK STATS */
-.qstats { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 28px; }
-.qst { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,.04); }
-.qst-v { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--accent); }
-.qst-l { font-size: 11px; color: var(--muted); margin-top: 3px; text-transform: uppercase; letter-spacing: 1px; }
+.qstats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;}
+.qst{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;
+  text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.04);}
+.qst-v{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--accent);}
+.qst-l{font-size:11px;color:var(--muted);margin-top:3px;text-transform:uppercase;letter-spacing:1px;}
 
-/* SELECTED BANNER */
-.sel-banner {
-  border-radius: 16px; padding: 16px 22px; margin-bottom: 22px;
-  display: none; align-items: center; gap: 16px; animation: fadeUp .3s ease;
-}
-.sb-lvl { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 900; }
-.sb-info strong { display: block; font-size: 14px; margin-bottom: 3px; }
-.sb-info span { font-size: 12px; color: var(--muted); }
+.sel-banner{border-radius:16px;padding:16px 22px;margin-bottom:22px;display:none;
+  align-items:center;gap:16px;animation:fadeUp .3s ease;}
+.sb-lvl{font-family:'Playfair Display',serif;font-size:30px;font-weight:900;}
+.sb-info strong{display:block;font-size:14px;margin-bottom:3px;}
+.sb-info span{font-size:12px;color:var(--muted);}
 
-/* BUTTONS */
-.btn {
-  display: inline-flex; align-items: center; gap: 9px;
-  background: var(--accent); color: #fff; border: none;
-  padding: 15px 38px; border-radius: 100px;
-  font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 700;
-  cursor: pointer; transition: all .2s; letter-spacing: .3px;
-  box-shadow: 0 4px 16px rgba(200,135,58,.3);
-}
-.btn:hover { background: #d4913f; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,135,58,.4); }
-.btn:active { transform: translateY(0); }
-.btn:disabled { opacity: .4; cursor: not-allowed; transform: none; box-shadow: none; }
-.btn-outline {
-  background: transparent; color: var(--text); border: 1.5px solid var(--border2);
-  box-shadow: none;
-}
-.btn-outline:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); box-shadow: none; }
+.btn{display:inline-flex;align-items:center;gap:9px;background:var(--accent);color:#fff;
+  border:none;padding:15px 38px;border-radius:100px;font-family:'Nunito',sans-serif;
+  font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:.3px;
+  box-shadow:0 4px 16px rgba(200,135,58,.3);}
+.btn:hover{background:#d4913f;transform:translateY(-2px);box-shadow:0 8px 24px rgba(200,135,58,.4);}
+.btn:active{transform:translateY(0);}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none;}
+.btn-outline{background:transparent;color:var(--text);border:1.5px solid var(--border2);box-shadow:none;}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-light);box-shadow:none;}
 
-/* PROGRESS */
-.prog-wrap { margin-bottom: 28px; }
-.prog-info { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); margin-bottom: 9px; }
-.prog-bar { height: 4px; background: var(--border); border-radius: 100px; overflow: hidden; }
-.prog-fill { height: 100%; background: linear-gradient(90deg, var(--accent), #e8a050); border-radius: 100px; transition: width .4s ease; }
+.prog-wrap{margin-bottom:28px;}
+.prog-info{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-bottom:9px;}
+.prog-bar{height:4px;background:var(--border);border-radius:100px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--accent),#e8a050);border-radius:100px;transition:width .4s ease;}
 
-/* QUESTION */
-.q-card {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: 22px; padding: 32px; margin-bottom: 16px;
-  box-shadow: 0 4px 20px rgba(0,0,0,.06); position: relative;
-}
-.q-card::before {
-  content: ''; position: absolute; top: 0; left: 24px; right: 24px; height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-  border-radius: 100px; opacity: .5;
-}
-.q-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
-.q-num {
-  background: var(--accent-light); color: var(--accent);
-  width: 30px; height: 30px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 700; flex-shrink: 0;
-}
-.q-cat { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; }
-.q-text { font-family: 'Playfair Display', serif; font-size: clamp(16px, 2.8vw, 21px); line-height: 1.5; margin-bottom: 7px; }
-.q-hint { font-size: 13px; color: var(--muted2); }
+.q-card{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:32px;
+  margin-bottom:16px;box-shadow:0 4px 20px rgba(0,0,0,.06);position:relative;}
+.q-card::before{content:'';position:absolute;top:0;left:24px;right:24px;height:2px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);border-radius:100px;opacity:.5;}
+.q-meta{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.q-num{background:var(--accent-light);color:var(--accent);width:30px;height:30px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+.q-cat{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;font-weight:600;}
+.q-text{font-family:'Playfair Display',serif;font-size:clamp(16px,2.8vw,21px);line-height:1.5;}
 
-/* OPTIONS */
-.opts { display: grid; gap: 9px; margin-top: 16px; }
-.opt {
-  background: var(--surface); border: 1.5px solid var(--border);
-  border-radius: 13px; padding: 14px 18px; text-align: left; cursor: pointer;
-  font-family: 'Nunito', sans-serif; font-size: 14px; color: var(--text);
-  transition: all .2s; display: flex; align-items: center; gap: 12px;
-}
-.opt:hover:not(.disabled) { border-color: #e8c89a; background: var(--accent-light); transform: translateX(3px); }
-.opt.correct { border-color: var(--success); background: var(--success-bg); color: var(--success); }
-.opt.wrong { border-color: var(--danger); background: var(--danger-bg); color: var(--danger); }
-.opt.disabled { cursor: default; pointer-events: none; }
-.opt-l {
-  width: 27px; height: 27px; border-radius: 8px; background: var(--border);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 700; flex-shrink: 0; color: var(--muted);
-}
-.opt.correct .opt-l { background: #c5e8d4; color: var(--success); }
-.opt.wrong .opt-l { background: #f5c5c5; color: var(--danger); }
+.opts{display:grid;gap:9px;margin-top:16px;}
+.opt{background:var(--surface);border:1.5px solid var(--border);border-radius:13px;
+  padding:14px 18px;text-align:left;cursor:pointer;font-family:'Nunito',sans-serif;
+  font-size:14px;color:var(--text);transition:all .2s;display:flex;align-items:center;gap:12px;}
+.opt:hover:not(.disabled){border-color:#e8c89a;background:var(--accent-light);transform:translateX(3px);}
+.opt.correct{border-color:var(--success);background:var(--success-bg);color:var(--success);}
+.opt.wrong{border-color:var(--danger);background:var(--danger-bg);color:var(--danger);}
+.opt.disabled{cursor:default;pointer-events:none;}
+.opt-l{width:27px;height:27px;border-radius:8px;background:var(--border);display:flex;
+  align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;color:var(--muted);}
+.opt.correct .opt-l{background:#c5e8d4;color:var(--success);}
+.opt.wrong .opt-l{background:#f5c5c5;color:var(--danger);}
 
-/* FEEDBACK */
-.fb { border-radius: 13px; padding: 13px 17px; font-size: 13px; line-height: 1.6; margin-top: 11px; display: none; }
-.fb.show { display: block; animation: fadeUp .3s ease; }
-.fb.ok { background: var(--success-bg); border: 1px solid #b0ddc0; color: #2a6b45; }
-.fb.bad { background: var(--danger-bg); border: 1px solid #f0b8b8; color: #8b2020; }
+.fb{border-radius:13px;padding:13px 17px;font-size:13px;line-height:1.6;margin-top:11px;display:none;}
+.fb.show{display:block;animation:fadeUp .3s ease;}
+.fb.ok{background:var(--success-bg);border:1px solid #b0ddc0;color:#2a6b45;}
+.fb.bad{background:var(--danger-bg);border:1px solid #f0b8b8;color:#8b2020;}
+.q-nav{display:flex;justify-content:flex-end;margin-top:16px;}
 
-.q-nav { display: flex; justify-content: flex-end; margin-top: 16px; }
+.load-wrap{text-align:center;padding:80px 20px;}
+.loader{width:52px;height:52px;border:3px solid var(--border);border-top-color:var(--accent);
+  border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 22px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.load-title{font-family:'Playfair Display',serif;font-size:21px;margin-bottom:7px;}
+.load-sub{color:var(--muted);font-size:14px;}
 
-/* LOADING */
-.load-wrap { text-align: center; padding: 80px 20px; }
-.loader {
-  width: 52px; height: 52px; border: 3px solid var(--border);
-  border-top-color: var(--accent); border-radius: 50%;
-  animation: spin .8s linear infinite; margin: 0 auto 22px;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-.load-title { font-family: 'Playfair Display', serif; font-size: 21px; margin-bottom: 7px; }
-.load-sub { color: var(--muted); font-size: 14px; }
+.res-top{text-align:center;margin-bottom:32px;}
+.res-badge{display:inline-flex;align-items:center;justify-content:center;width:96px;height:96px;
+  border-radius:50%;font-family:'Playfair Display',serif;font-size:34px;font-weight:900;margin:0 auto 16px;}
+.res-title{font-family:'Playfair Display',serif;font-size:clamp(20px,4.5vw,32px);font-weight:700;margin-bottom:7px;}
+.res-sub{color:var(--muted);font-size:15px;line-height:1.6;}
 
-/* RESULT */
-.res-top { text-align: center; margin-bottom: 32px; }
-.res-badge {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 96px; height: 96px; border-radius: 50%;
-  font-family: 'Playfair Display', serif; font-size: 34px; font-weight: 900;
-  margin: 0 auto 16px;
-}
-.res-title { font-family: 'Playfair Display', serif; font-size: clamp(20px, 4.5vw, 32px); font-weight: 700; margin-bottom: 7px; }
-.res-sub { color: var(--muted); font-size: 15px; line-height: 1.6; }
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:26px 0;}
+.st-c{background:var(--card);border:1px solid var(--border);border-radius:15px;padding:18px;
+  text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+.st-v{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--accent);margin-bottom:4px;}
+.st-l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
 
-.stats-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin: 26px 0; }
-.st-c { background: var(--card); border: 1px solid var(--border); border-radius: 15px; padding: 18px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,.05); }
-.st-v { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
-.st-l { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+.ai-box{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--accent);
+  border-radius:0 15px 15px 0;padding:22px;margin-bottom:20px;font-size:14px;line-height:1.8;
+  color:var(--text);box-shadow:0 2px 10px rgba(0,0,0,.05);}
+.ai-box h3{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:11px;font-weight:700;}
 
-.ai-box {
-  background: var(--card); border: 1px solid var(--border);
-  border-left: 3px solid var(--accent); border-radius: 0 15px 15px 0;
-  padding: 22px; margin-bottom: 20px; font-size: 14px; line-height: 1.8; color: var(--text);
-  box-shadow: 0 2px 10px rgba(0,0,0,.05);
-}
-.ai-box h3 { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 11px; font-weight: 700; }
+.roadmap{background:var(--card);border:1px solid var(--border);border-radius:18px;
+  padding:24px;margin-bottom:22px;box-shadow:0 2px 10px rgba(0,0,0,.05);}
+.roadmap h3{font-family:'Playfair Display',serif;font-size:17px;margin-bottom:18px;}
+.rm-item{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px;
+  padding-bottom:14px;border-bottom:1px solid var(--border);}
+.rm-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.rm-icon{width:36px;height:36px;border-radius:10px;background:var(--accent-light);
+  display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.rm-text strong{display:block;font-size:14px;margin-bottom:3px;}
+.rm-text span{font-size:13px;color:var(--muted);line-height:1.5;}
 
-.roadmap { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 24px; margin-bottom: 22px; box-shadow: 0 2px 10px rgba(0,0,0,.05); }
-.roadmap h3 { font-family: 'Playfair Display', serif; font-size: 17px; margin-bottom: 18px; }
-.rm-item { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
-.rm-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
-.rm-icon { width: 36px; height: 36px; border-radius: 10px; background: var(--accent-light); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
-.rm-text strong { display: block; font-size: 14px; margin-bottom: 3px; }
-.rm-text span { font-size: 13px; color: var(--muted); line-height: 1.5; }
+.res-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:24px;}
+.promo{background:linear-gradient(135deg,#fff8f0,#fff3e8);border:1px solid #e8c89a;
+  border-radius:20px;padding:28px;text-align:center;}
+.promo h3{font-family:'Playfair Display',serif;font-size:20px;margin-bottom:9px;color:var(--accent);}
+.promo p{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:18px;}
+.stars{color:var(--accent);font-size:18px;margin-bottom:10px;letter-spacing:3px;}
 
-.res-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 24px; }
-
-.promo {
-  background: linear-gradient(135deg, #fff8f0, #fff3e8);
-  border: 1px solid #e8c89a; border-radius: 20px; padding: 28px; text-align: center;
-}
-.promo h3 { font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 9px; color: var(--accent); }
-.promo p { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 18px; }
-.stars { color: var(--accent); font-size: 18px; margin-bottom: 10px; letter-spacing: 3px; }
-
-@media(max-width:500px) {
-  .levels-grid { grid-template-columns: repeat(2,1fr); }
-  .qstats, .stats-row { gap: 8px; }
-  .st-v { font-size: 22px; }
-  .q-card { padding: 20px 16px; }
-  .res-actions { flex-direction: column; }
-  .res-actions .btn { justify-content: center; }
-  .sel-banner { flex-direction: column; text-align: center; }
+@media(max-width:500px){
+  .levels-grid{grid-template-columns:repeat(2,1fr);}
+  .qstats,.stats-row{gap:8px;}.st-v{font-size:22px;}
+  .q-card{padding:20px 16px;}
+  .res-actions{flex-direction:column;}
+  .res-actions .btn{justify-content:center;}
+  .sel-banner{flex-direction:column;text-align:center;}
 }
 </style>
 </head>
 <body>
 <div class="container">
-<div class="header" id="mainHeader">
+  <div class="header">
     <div class="badge">🇷🇺 Rus Tili Testi</div>
     <h1>Darajangizni<br><span>aniqlang</span></h1>
-    <p class="subtitle">Darajangizni tanlang — lug'at, grammatika va urg'u bo'yicha 15 ta savol yeching. AI tahlil bilan shaxsiy o'qish rejasi oling!</p>
+    <p class="subtitle">Darajangizni tanlang — lug'at, grammatika va urg'u bo'yicha 15 ta savol yeching. Natijada shaxsiy o'qish rejasi oling!</p>
   </div>
 
-  <!-- INTRO -->
   <div id="introScreen" class="screen active">
     <div class="info-hint">👇 O'zingizga mos darajani bosing va testni boshlang</div>
     <div class="levels-grid">
@@ -269,28 +183,28 @@ h1 span { color: var(--accent); font-style: italic; }
         <div class="level-emoji">💬</div>
         <div class="level-tag" style="color:var(--B1)">B1</div>
         <div class="level-name" style="color:var(--B1)">O'rta</div>
-        <div class="level-desc">Oddiy gaplasha olaman, grammatika bilaman</div>
+        <div class="level-desc">Oddiy gaplasha olaman</div>
         <div class="lv-pill" style="background:var(--B1bg);color:var(--B1)">15 savol</div>
       </div>
       <div class="level-card" onclick="pickLevel('B2')" id="card-B2">
         <div class="level-emoji">🎯</div>
         <div class="level-tag" style="color:var(--B2)">B2</div>
         <div class="level-name" style="color:var(--B2)">Yuqori o'rta</div>
-        <div class="level-desc">Erkin gaplashaman, murakkab mavzularni tushunaman</div>
+        <div class="level-desc">Erkin gaplashaman</div>
         <div class="lv-pill" style="background:var(--B2bg);color:var(--B2)">15 savol</div>
       </div>
       <div class="level-card" onclick="pickLevel('C1')" id="card-C1">
         <div class="level-emoji">🏆</div>
         <div class="level-tag" style="color:var(--C1)">C1</div>
         <div class="level-name" style="color:var(--C1)">Ilg'or</div>
-        <div class="level-desc">Akademik va kasbiy tilda muloqot qila olaman</div>
+        <div class="level-desc">Murakkab mavzularda gaplasha olaman</div>
         <div class="lv-pill" style="background:var(--C1bg);color:var(--C1)">15 savol</div>
       </div>
       <div class="level-card" onclick="pickLevel('C2')" id="card-C2">
         <div class="level-emoji">⭐</div>
         <div class="level-tag" style="color:var(--C2)">C2</div>
         <div class="level-name" style="color:var(--C2)">Mukammal</div>
-        <div class="level-desc">Deyarli ona tili darajasida bilaman</div>
+        <div class="level-desc">Deyarli ona tili darajasida</div>
         <div class="lv-pill" style="background:var(--C2bg);color:var(--C2)">15 savol</div>
       </div>
     </div>
@@ -308,7 +222,6 @@ h1 span { color: var(--accent); font-style: italic; }
     </div>
   </div>
 
-  <!-- QUIZ -->
   <div id="quizScreen" class="screen">
     <div class="prog-wrap">
       <div class="prog-info">
@@ -320,23 +233,20 @@ h1 span { color: var(--accent); font-style: italic; }
     <div class="q-card">
       <div class="q-meta"><div class="q-num" id="qNum">1</div><div class="q-cat" id="qCat"></div></div>
       <div class="q-text" id="qText"></div>
-      <div class="q-hint" id="qHint"></div>
     </div>
     <div id="optsWrap"></div>
     <div class="fb" id="fbBox"></div>
     <div class="q-nav"><button class="btn" id="nxtBtn" onclick="nextQ()" style="display:none;">Keyingisi →</button></div>
   </div>
 
-  <!-- LOADING -->
   <div id="loadScreen" class="screen">
     <div class="load-wrap">
       <div class="loader"></div>
-      <div class="load-title">AI tahlil qilmoqda...</div>
-      <div class="load-sub">Natijalaringizga asosan shaxsiy reja tuzilmoqda</div>
+      <div class="load-title">Natijalar tahlil qilinmoqda...</div>
+      <div class="load-sub">Shaxsiy o'qish rejangiz tuzilmoqda</div>
     </div>
   </div>
 
-  <!-- RESULT -->
   <div id="resScreen" class="screen">
     <div class="res-top">
       <div class="res-badge" id="resBadge"></div>
@@ -348,7 +258,7 @@ h1 span { color: var(--accent); font-style: italic; }
       <div class="st-c"><div class="st-v" id="stPct">-</div><div class="st-l">Foiz</div></div>
       <div class="st-c"><div class="st-v" id="stGrade">-</div><div class="st-l">Baho</div></div>
     </div>
-    <div class="ai-box"><h3>🤖 AI Tahlili</h3><div id="aiTxt"></div></div>
+    <div class="ai-box"><h3>🤖 Tahlil va tavsiya</h3><div id="aiTxt"></div></div>
     <div class="roadmap"><h3>📍 Sizning o'qish yo'lnamangiz</h3><div id="rmWrap"></div></div>
     <div class="res-actions">
       <button class="btn" onclick="goHome()">🏠 Boshqa daraja sinab ko'ring</button>
@@ -357,7 +267,7 @@ h1 span { color: var(--accent); font-style: italic; }
     <div class="promo">
       <div class="stars">★★★★★</div>
       <h3>Rus tilini o'rganishni davom ettiring!</h3>
-      <p>Kanalimizda har kuni foydali postlar, real misollar va 15 daqiqalik mashqlar bilan darajangizni oshiring</p>
+      <p>Zamira Turganbayeva kanalida har kuni foydali mashqlar, real misollar va 15 daqiqalik darslar bilan darajangizni oshiring</p>
       <a href="https://t.me/zamira_russian" target="_blank" class="btn">📲 Kanalga obuna bo'ling</a>
     </div>
   </div>
@@ -373,323 +283,416 @@ const LVL_INFO = {
   C2:{color:"#7b5ea7",bg:"#f3eefb",name:"Mukammal",emoji:"⭐"},
 };
 
+// MUHIM QOIDALAR:
+// 1. Har bir savolda to'g'ri javob A, B, C, D ga teng taqsimlansin
+// 2. Xato javob variantlarida asosiy so'z takrorlanmasin
+// 3. Hech qanday podkazka yo'q
+// 4. Rus tilida xato bo'lmasin
+// 5. Inglizcha atama ishlatilmasin
+
 const QS = {
 A1: [
-  // LEKSIKA (5)
-  {t:"Lug'at",q:"«Здравствуйте» — bu nima degani?",h:"Rasmiy salomlashuv",o:["Xayr","Salom / Assalomu alaykum","Rahmat","Ha"],a:1,fb:"«Здравствуйте» — rasmiy salomlashuv. Kundalik do'stona variant: «Привет»"},
-  {t:"Lug'at",q:"«Спасибо» nima ma'nosi bor?",h:"Minnatdorlik bildirish",o:["Iltimos","Rahmat","Kechirasiz","Ha"],a:1,fb:"«Спасибо» — rahmat. Javob berish: «Пожалуйста» (marhamat)"},
-  {t:"Lug'at",q:"«Где туалет?» — bu nima degan gap?",h:"Ko'chada so'rash mumkin bo'lgan ibora",o:["Ovqat qayerda?","Hojatxona qayerda?","Uy qayerda?","Vokzal qayerda?"],a:1,fb:"«Где» = qayerda. Bu iborani yo'lda albatta bilish kerak!"},
-  {t:"Lug'at",q:"Quyidagilardan qaysi biri meva (fruit)?",h:"Rus tilida mevalar",o:["стол","яблоко","машина","книга"],a:1,fb:"«Яблоко» = olma. «Стол» = stol, «машина» = mashina, «книга» = kitob"},
-  {t:"Lug'at",q:"«Вода» nima?",h:"Har kuni ichiladigan narsa",o:["Non","Suv","Choy","Qand"],a:1,fb:"«Вода» = suv. «Хлеб» = non, «чай» = choy"},
-  // GRAMMATIKA (5)
-  {t:"Grammatika",q:"Bo'sh joyni to'ldiring: «Это ___ книга» (men — moя)",h:"Egalik olmoshi",o:["моя","мой","моё","мои"],a:0,fb:"«Книга» ayol jinsli so'z, shuning uchun egalik olmoshi «моя» bo'ladi"},
-  {t:"Grammatika",q:"«Я ___ студент» — qaysi so'z kerak?",h:"Kesim (skazuemoye) bu yerda tushib qoladi",o:["есть","am","—","быть"],a:2,fb:"Rus tilida hozirgi zamonda «есть» (to be) tushib qoladi: «Я студент» = Men talabaman"},
-  {t:"Grammatika",q:"Ko'pligi qaysi: «книга» (kitob)?",h:"Ko'plik qo'shimchasi",o:["книги","книгa","книгу","книге"],a:0,fb:"«Книги» — ko'plik shakli. -и/-ы qo'shimchasi ko'plik hosil qiladi"},
-  {t:"Grammatika",q:"«Это ___ стол» — mening (my)",h:"Erkak jinsli so'z bilan egalik olmoshi",o:["моя","моё","мой","мои"],a:2,fb:"«Стол» erkak jinsli (мужской род), shuning uchun «мой»"},
-  {t:"Grammatika",q:"«Я читаю» — bu qaysi zamon?",h:"Fe'l zamoni",o:["O'tgan zamon","Hozirgi zamon","Kelasi zamon","Buyruq mayli"],a:1,fb:"«Читаю» — hozirgi zamon (настоящее время), 1-shaxs birlik"},
-  // URG'U (5)
-  {t:"Urg'u",q:"«До́брое у́тро» — bu nima degani?",h:"Ertalab aytiladi",o:["Kechqurun xayr","Xayrli tong","Xayrli kecha","Xayrli kun"],a:1,fb:"«До́брое у́тро» = Xayrli tong! Urg'u: ДО-broe U-tro"},
-  {t:"Urg'u",q:"«Пока́» so'zi qanday qo'llaniladi?",h:"Xayrlashish so'zi",o:["Salomlashish","Xayrlashish (norasmiy)","Rahmat","Kechirasiz"],a:1,fb:"«Пока́» — norasmiy xayrlashuv. Urg'u oxirgi bo'g'inda: po-KA"},
-  {t:"Urg'u",q:"«Молоко́» so'zida urg'u qayerda?",h:"3 bo'g'inli so'z",o:["МО-lo-ko","mo-LO-ko","mo-lo-KO","har bir bo'g'inda"],a:2,fb:"«Молоко́» — urg'u oxirgi bo'g'inda: mo-lo-KO. Ko'p rus so'zlarida urg'u oxirga tomon"},
-  {t:"Urg'u",q:"«Хорошо́» so'zida urg'u qayerda?",h:"Juda ko'p ishlatiladigan so'z",o:["ХО-ro-sho","ho-RO-sho","ho-ro-SHO","farqi yo'q"],a:2,fb:"«Хорошо́» — urg'u oxirida: ho-ro-SHO. Bu so'zni to'g'ri talaffuz qilish muhim!"},
-  {t:"Urg'u",q:"«Спаси́бо» so'zida urg'u qayerda?",h:"Rahmat deyish",o:["СПА-si-bo","spa-SI-bo","spa-si-BO","farqi yo'q"],a:1,fb:"«Спаси́бо» — urg'u ikkinchi bo'g'inda: spa-SI-bo"},
+  // LUG'AT (5 ta) — to'g'ri javob: A=2, B=1, C=1, D=1
+  {t:"Lug'at",q:"«Здравствуйте» — bu nima degani?",o:["Xayr","Rahmat","Salom","Kechirasiz"],a:2},
+  {t:"Lug'at",q:"«Спасибо» — bu nima degani?",o:["Rahmat","Kechirasiz","Ha","Iltimos"],a:0},
+  {t:"Lug'at",q:"«Вода» — bu nima?",o:["Non","Choy","Qand","Suv"],a:3},
+  {t:"Lug'at",q:"«Яблоко» — bu qaysi meva?",o:["Banan","Olma","Uzum","Nok"],a:1},
+  {t:"Lug'at",q:"«Где туалет?» — bu nima degan gap?",o:["Ovqat qayerda?","Vokzal qayerda?","Hojatxona qayerda?","Narxi qancha?"],a:2},
+  // GRAMMATIKA (5 ta) — to'g'ri javob: A=1, B=2, C=1, D=1
+  {t:"Grammatika",q:"«Это ___ книга» — meniki (ayol jinsli so'z bilan)",o:["мой","моя","моё","мои"],a:1},
+  {t:"Grammatika",q:"«Это ___ стол» — meniki (erkak jinsli so'z bilan)",o:["моя","моё","мой","мои"],a:2},
+  {t:"Grammatika",q:"«Книга» so'zining ko'pligi qaysi?",o:["книгу","книге","книгой","книги"],a:3},
+  {t:"Grammatika",q:"Hozirgi zamonda «to be» fe'li rus tilida qanday qo'llaniladi?",o:["есть deb aytiladi","тушиб колади","быть deb aytiladi","имею deb aytiladi"],a:1},
+  {t:"Grammatika",q:"«Я читаю» — bu qaysi zamon?",o:["O'tgan","Kelasi","Hozirgi","Buyruq"],a:2},
+  // URG'U (5 ta) — to'g'ri javob: A=1, B=1, C=2, D=1
+  {t:"Urg'u",q:"«Хорошо» so'zida urg'u qayerda?",o:["ХО-ro-sho","ho-RO-sho","ho-ro-SHO","farqi yo'q"],a:2},
+  {t:"Urg'u",q:"«Спасибо» so'zida urg'u qayerda?",o:["СПА-si-bo","spa-SI-bo","spa-si-BO","farqi yo'q"],a:1},
+  {t:"Urg'u",q:"«Молоко» so'zida urg'u qayerda?",o:["МО-lo-ko","mo-LO-ko","mo-lo-KO","farqi yo'q"],a:2},
+  {t:"Urg'u",q:"«Доброе утро» — bu nima degani?",o:["Kechqurun xayr","Xayrli kecha","Xayrli tong","Xayrli kun"],a:2},
+  {t:"Urg'u",q:"«Пока» so'zi qanday qo'llaniladi?",o:["Rasmiy salomlashuv","Ha degan ma'noda","Rahmat o'rnida","Norasmiy xayrlashuv"],a:3},
 ],
+
 A2: [
-  // LEKSIKA (5)
-  {t:"Lug'at",q:"«Сколько стоит?» — nima ma'nosi?",h:"Do'konda ishlatiladi",o:["Qayerda?","Narxi qancha?","Nechta?","Qachon?"],a:1,fb:"«Сколько стоит?» — narxni so'rash uchun. «Сколько» = qancha"},
-  {t:"Lug'at",q:"«Направо» qaysi tomonga?",h:"Yo'l ko'rsatish",o:["Chap","O'ng","To'g'ri","Orqaga"],a:1,fb:"«Направо» = o'ngga. «Налево» = chapga. «Прямо» = to'g'riga"},
-  {t:"Lug'at",q:"«Болит голова» nima ma'nosi?",h:"Sog'liq haqida",o:["Qo'lim og'riydi","Boshim og'riydi","Oyog'im og'riydi","Qornim og'riydi"],a:1,fb:"«Голова» = bosh. «Болит» = og'riydi. «У меня болит голова» = boshim og'riydi"},
-  {t:"Lug'at",q:"«Налево» qaysi tomonga?",h:"Yo'nalish",o:["O'ng","Chap","Oldinga","Orqaga"],a:1,fb:"«Налево» = chapga. «Направо» = o'ngga. «Назад» = orqaga"},
-  {t:"Lug'at",q:"«Открыто» — bu nima degani?",h:"Do'kon eshigida ko'rish mumkin",o:["Yopiq","Ochiq","Bepul","To'liq"],a:1,fb:"«Открыто» = ochiq. «Закрыто» = yopiq. Do'konda juda muhim so'zlar!"},
-  // GRAMMATIKA (5)
-  {t:"Grammatika",q:"Qaysi javob to'g'ri? «Я ___ в Ташкенте»",h:"Yashamoq fe'li, hozirgi zamon",o:["жил","живу","жить","живёт"],a:1,fb:"«Живу» — men yashayman (hozirgi zamon, 1-shaxs). «Живёт» = u yashaydi"},
-  {t:"Grammatika",q:"«Я хочу кофе ___ молоком»",h:"... bilan",o:["с","без","для","на"],a:0,fb:"«С» = bilan (+ tvoritelny padej). «Кофе с молоком» = sutli qahva"},
-  {t:"Grammatika",q:"«Мне ___ лет» — to'g'ri varianti?",h:"Yosh aytish",o:["двадцать пять","двадцать пяти","двадцать пятый","пять двадцать"],a:0,fb:"«Мне двадцать пять лет» = menga 25 yosh. «Мне» = menga (dativ padej)"},
-  {t:"Grammatika",q:"«У меня ___ машина» — menikida bor",h:"Egalik ifodalash",o:["есть","имею","иметь","мой"],a:0,fb:"«У меня есть» = menda bor. Bu konstruksiya rus tilida egalikni ifodalaydi"},
-  {t:"Grammatika",q:"«Вчера я ___ в кино» — o'tgan zamon",h:"Bormoq fe'li, o'tgan zamon, erkak",o:["иду","идёт","шёл","идти"],a:2,fb:"«Шёл» — bormoq fe'lining o'tgan zamoni (erkak). Ayol uchun: «шла»"},
-  // URG'U (5)
-  {t:"Urg'u",q:"«Магази́н» so'zida urg'u qayerda?",h:"Do'kon",o:["МА-ga-zin","ma-GA-zin","ma-ga-ZIN","farqi yo'q"],a:1,fb:"«Магази́н» — urg'u ikkinchi bo'g'inda: ma-GA-zin"},
-  {t:"Urg'u",q:"«Телефо́н» so'zida urg'u qayerda?",h:"Aloqa vositasi",o:["ТЕ-le-fon","te-LE-fon","te-le-FON","farqi yo'q"],a:2,fb:"«Телефо́н» — urg'u oxirgi bo'g'inda: te-le-FON"},
-  {t:"Urg'u",q:"«До свида́ния» iborasida urg'u qayerda?",h:"Rasmiy xayrlashuv",o:["до СВИ-da-ni-ya","do svi-DA-ni-ya","do svi-da-NI-ya","do svi-da-ni-YA"],a:1,fb:"«До свида́ния» — urg'u «да»da: do svi-DA-ni-ya"},
-  {t:"Urg'u",q:"«Понима́ю» — to'g'ri urg'u qayerda?",h:"Tushunaman",o:["ПО-ni-ma-yu","po-ni-MA-yu","po-ni-ma-YU","farqi yo'q"],a:1,fb:"«Понима́ю» — urg'u «ма»da: po-ni-MA-yu. «Я вас понимаю» = men sizni tushunaman"},
-  {t:"Urg'u",q:"«Ресторан» so'zida urg'u qayerda?",h:"Ovqatlanadigan joy",o:["РЕС-to-ran","res-TO-ran","res-to-RAN","farqi yo'q"],a:2,fb:"«Рестора́н» — urg'u oxirgi bo'g'inda: res-to-RAN"},
+  // LUG'AT (5 ta)
+  {t:"Lug'at",q:"«Сколько стоит?» — bu nima degani?",o:["Qayerda?","Nechta?","Narxi qancha?","Qachon?"],a:2},
+  {t:"Lug'at",q:"«Направо» — bu qaysi tomonga?",o:["Orqaga","Chapga","To'g'riga","O'ngga"],a:3},
+  {t:"Lug'at",q:"«Налево» — bu qaysi tomonga?",o:["Chapga","O'ngga","Oldinga","Orqaga"],a:0},
+  {t:"Lug'at",q:"«Открыто» — bu nima degani?",o:["Yopiq","Bepul","Ochiq","To'liq"],a:2},
+  {t:"Lug'at",q:"«Болит голова» — bu nima degani?",o:["Qo'lim og'riydi","Oyog'im og'riydi","Boshim og'riydi","Qornim og'riydi"],a:2},
+  // GRAMMATIKA (5 ta)
+  {t:"Grammatika",q:"«Я ___ в Ташкенте» — to'g'ri variant?",o:["живёт","живу","жить","жил"],a:1},
+  {t:"Grammatika",q:"«Кофе ___ молоком» — qaysi so'z kerak?",o:["на","для","с","без"],a:2},
+  {t:"Grammatika",q:"«У меня ___ машина» — menda bor",o:["имею","мой","есть","иметь"],a:2},
+  {t:"Grammatika",q:"«Вчера я ___ в кино» — o'tgan zamon (erkak)",o:["иду","идти","идёт","шёл"],a:3},
+  {t:"Grammatika",q:"«Мне двадцать пять ___» — yosh aytish",o:["год","годов","лет","года"],a:2},
+  // URG'U (5 ta)
+  {t:"Urg'u",q:"«Магазин» so'zida urg'u qayerda?",o:["МА-ga-zin","ma-GA-zin","ma-ga-ZIN","farqi yo'q"],a:1},
+  {t:"Urg'u",q:"«Телефон» so'zida urg'u qayerda?",o:["ТЕ-le-fon","te-LE-fon","te-le-FON","farqi yo'q"],a:2},
+  {t:"Urg'u",q:"«До свидания» iborasida urg'u qayerda?",o:["до СВИ-da-ni-ya","do svi-DA-ni-ya","do svi-da-NI-ya","do svi-da-ni-YA"],a:1},
+  {t:"Urg'u",q:"«Понимаю» so'zida urg'u qayerda?",o:["ПО-ni-ma-yu","po-NI-ma-yu","po-ni-MA-yu","po-ni-ma-YU"],a:2},
+  {t:"Urg'u",q:"«Ресторан» so'zida urg'u qayerda?",o:["РЕС-to-ran","res-TO-ran","res-to-RAN","farqi yo'q"],a:2},
 ],
+
 B1: [
-  // LEKSIKA (5)
-  {t:"Lug'at",q:"«Несмотря на» iborasi nima ma'no beradi?",h:"Qarama-qarshi bog'lovchi ibora",o:["Undan tashqari","Qaramasdan","Shuning uchun","Masalan"],a:1,fb:"«Несмотря на дождь, мы пошли» — yomg'irga qaramasdan bordik"},
-  {t:"Lug'at",q:"«Поэтому» so'zining ma'nosi?",h:"Sabab-oqibat",o:["Lekin","Shuning uchun","Ammo","Chunki"],a:1,fb:"«Поэтому» = shuning uchun. «Потому что» = chunki (sabab bildiradi)"},
-  {t:"Lug'at",q:"«Вряд ли» iborasi nima ma'no beradi?",h:"Ehtimollik",o:["Albatta","Darvoqe","Zo'rg'a, ehtimolsiz","Tez orada"],a:2,fb:"«Вряд ли» = zo'rg'a, qiyin, ehtimolsiz. Masalan: «Вряд ли он придёт» = u kelishi dargumon"},
-  {t:"Lug'at",q:"«Подробнее» so'zining ma'nosi?",h:"So'rash iborasi",o:["Tezroq","Batafsilroq","Qisqaroq","Balandroq"],a:1,fb:"«Подробнее» = batafsilroq. «Расскажите подробнее» = batafsilroq aytib bering"},
-  {t:"Lug'at",q:"«Кажется» so'zi qanday qo'llaniladi?",h:"Taxmin bildirish",o:["Aniq","Shekilli, ko'rinadi","Hech qachon","Doim"],a:1,fb:"«Кажется» = shekilli, ko'rinadi. Masalan: «Кажется, он прав» = shekilli, u haq"},
-  // GRAMMATIKA (5)
-  {t:"Grammatika",q:"To'g'ri shaklni tanlang: «Я разговаривал ___ другом»",h:"Kimdir bilan — tvoritelny padej",o:["с другом","с другa","другом","с друга"],a:0,fb:"«С» + tvoritelny padej = bilan. «Друг» → «другом» (tvoritelny)"},
-  {t:"Grammatika",q:"«Хорошо» va «хороший» — qaysi biri sifat?",h:"So'z turkumi",o:["Хорошо","Хороший","Ikkalasi ham sifat","Ikkalasi ham fe'l holi"],a:1,fb:"«Хороший» — sifat (хороший фильм). «Хорошо» — fe'l holi (он хорошо говорит)"},
-  {t:"Grammatika",q:"«Целый час» iborasida «целый» nima vazifada?",h:"Davomiylikni ta'kidlash",o:["Son","Sifat","Ravish","Olmosh"],a:1,fb:"«Целый» = butun, to'liq. «Целый час» = butun bir soat (davomiylikni kuchaytiradi)"},
-  {t:"Grammatika",q:"«Мне нравится» va «я люблю» — farqi nima?",h:"Yoqtirish ifodalash",o:["Farqi yo'q","«Нравится» — vaqtinchalik yoqish, «люблю» — chuqur sevgi","«Люблю» — vaqtinchalik","«Нравится» — kuchliroq"],a:1,fb:"«Нравится» = yoqadi (umumiy), «люблю» = sevaman (kuchliroq, chuqurroq hissiyot)"},
-  {t:"Grammatika",q:"«Я читал книгу ___ два часа» — qaysi so'z kerak?",h:"Davomiylik ifodalash",o:["для","во","в течение","через"],a:2,fb:"«В течение» = davomida. «В течение двух часов» = ikki soat davomida. «Через» = keyin"},
-  // URG'U (5)
-  {t:"Urg'u",q:"«Звони́т» yoki «зво́нит» — qaysi biri to'g'ri?",h:"Eng ko'p xato qilinadigan urg'ulardan biri",o:["ЗВО-nit (1-bo'g'in)","zvo-NIT (2-bo'g'in)","Ikkalasi ham to'g'ri","Farqi yo'q"],a:1,fb:"«Звони́т» — urg'u ikkinchi bo'g'inda: zvo-NIT. Bu juda keng tarqalgan xato! 'Зво́нит' — noto'g'ri!"},
-  {t:"Urg'u",q:"«Ката́лог» yoki «ката́лог» — qayerda urg'u?",h:"Katalog so'zi",o:["КА-ta-log","ka-TA-log","ka-ta-LOG","farqi yo'q"],a:1,fb:"«Катало́г» — urg'u ikkinchi bo'g'inda: ka-TA-log. Ko'pchilik birinchi bo'g'inda deb xato qiladi"},
-  {t:"Urg'u",q:"«До́говор» yoki «догово́р» — qaysi biri adabiy me'yor?",h:"Shartnoma ma'nosidagi so'z",o:["ДО-go-vor (1-bo'g'in)","do-go-VOR (3-bo'g'in)","Ikkalasi ham to'g'ri","do-GO-vor (2-bo'g'in)"],a:1,fb:"Adabiy me'yor: «Догово́р» — urg'u oxirda. «До́говор» so'zlashuv tilida uchraydi, lekin adabiy emas"},
-  {t:"Urg'u",q:"«Красивее» so'zida urg'u qayerda?",h:"Chiroyliroq (qiyosiy daraja)",o:["КРА-si-ve-ye","kra-SI-ve-ye","kra-si-VE-ye","kra-si-ve-YE"],a:1,fb:"«Краси́вее» — urg'u ikkinchi bo'g'inda: kra-SI-ve-ye. Qiyosiy daraja yasalganda urg'u o'zgarmaydi"},
-  {t:"Urg'u",q:"«Включи́т» (yoqadi) — to'g'ri urg'u?",h:"Yoqmoq fe'li, kelajak zamon",o:["ВКЛЮ-chit","vklyу-CHIT","farqi yo'q","ikkalasi to'g'ri"],a:1,fb:"«Включи́т» — urg'u oxirida: vklyu-CHIT. Bu fe'llarda urg'u ko'pincha oxirgi bo'g'inda bo'ladi"},
+  // LUG'AT (5 ta)
+  {t:"Lug'at",q:"«Несмотря на» — bu nima ma'noda?",o:["Shuning uchun","Masalan","Qaramasdan","Undan tashqari"],a:2},
+  {t:"Lug'at",q:"«Поэтому» — bu nima ma'noda?",o:["Lekin","Chunki","Masalan","Shuning uchun"],a:3},
+  {t:"Lug'at",q:"«Кажется» — bu qanday ma'noda qo'llaniladi?",o:["Aniq, albatta","Shekilli, ko'rinadi","Hech qachon","Doim"],a:1},
+  {t:"Lug'at",q:"«Подробнее» — bu nima degani?",o:["Tezroq","Balandroq","Qisqaroq","Batafsilroq"],a:3},
+  {t:"Lug'at",q:"«Вряд ли» — bu nima ma'noda?",o:["Albatta","Zo'rg'a, dargumon","Ehtimol ko'p","Tez orada"],a:1},
+  // GRAMMATIKA (5 ta)
+  {t:"Grammatika",q:"«Я разговаривал ___ другом» — qaysi so'z kerak?",o:["на","с","для","в"],a:1},
+  {t:"Grammatika",q:"«Мне нравится» va «я люблю» — qaysi biri kuchliroq his?",o:["Мне нравится","Farqi yo'q","Я люблю","Ikkalasi teng"],a:2},
+  {t:"Grammatika",q:"«Хороший» — bu so'z qaysi turkumga kiradi?",o:["Ravish","Fe'l","Sifat","Olmosh"],a:2},
+  {t:"Grammatika",q:"«Хорошо» — bu so'z qaysi turkumga kiradi?",o:["Sifat","Ravish","Fe'l","Olmosh"],a:1},
+  {t:"Grammatika",q:"«В течение двух часов» — bu nima ma'noda?",o:["Ikki soatdan keyin","Ikki soat oldin","Ikki soat davomida","Ikki soatga qadar"],a:2},
+  // URG'U (5 ta)
+  {t:"Urg'u",q:"«Звонит» — to'g'ri urg'u qayerda?",o:["ЗВО-nit","zvo-NIT","farqi yo'q","ikkalasi to'g'ri"],a:1},
+  {t:"Urg'u",q:"«Каталог» so'zida urg'u qayerda?",o:["КА-ta-log","ka-TA-log","ka-ta-LOG","farqi yo'q"],a:1},
+  {t:"Urg'u",q:"«Договор» so'zida adabiy urg'u qayerda?",o:["ДО-go-vor","do-GO-vor","do-go-VOR","farqi yo'q"],a:2},
+  {t:"Urg'u",q:"«Красивее» so'zida urg'u qayerda?",o:["КРА-si-ve-ye","kra-SI-ve-ye","kra-si-VE-ye","kra-si-ve-YE"],a:1},
+  {t:"Urg'u",q:"«Включит» so'zida urg'u qayerda?",o:["ВКЛЮ-chit","vklyу-CHIT","farqi yo'q","ikkalasi to'g'ri"],a:1},
 ],
+
 B2: [
-  // LEKSIKA (5)
-  {t:"Lug'at",q:"«Изощрённый» so'zining ma'nosi?",h:"Murakkab, nozik",o:["Oddiy","Nozik, murakkab ishlangan","Eski","Tez"],a:1,fb:"«Изощрённый вкус» — nozik did. So'z «ищо'рённый» — haddan tashqari rivojlangan, nozik"},
-  {t:"Lug'at",q:"«Претендовать на что-то» nima ma'no?",h:"Da'vo qilmoq",o:["Voz kechmoq","Da'vo qilmoq, intilmoq","Qo'shilmoq","Rad etmoq"],a:1,fb:"«Претендовать на должность» = lavozimga da'vogar bo'lmoq"},
-  {t:"Lug'at",q:"«Тем не менее» so'zining sinonimi?",h:"Zidlov bog'lovchi",o:["Поэтому","Однако","Следовательно","Например"],a:1,fb:"«Тем не менее» ≈ «однако» ≈ lekin, biroq, shu bilan birga. Rasmiy uslubda ko'p ishlatiladi"},
-  {t:"Lug'at",q:"«Сопоставить» fe'lining ma'nosi?",h:"Tahlil qilish",o:["Bo'lmoq","Taqqoslamoq, solishtimoq","Yig'moq","Tarqatmoq"],a:1,fb:"«Сопоставить» = taqqoslamoq. «Сопоставьте два текста» = ikki matnni taqqoslang"},
-  {t:"Lug'at",q:"«Впрочем» iborasi nima ma'noda ishlatiladi?",h:"Fikrni to'ldirish yoki o'zgartirish",o:["Shuning uchun","Darvoqe, aytganday, biroq","Chunki","Albatta"],a:1,fb:"«Впрочем» = darvoqe, aytganday, biroq. Fikr o'zgartirish yoki qo'shimcha kiritishda ishlatiladi"},
-  // GRAMMATIKA (5)
-  {t:"Grammatika",q:"Qaysi jumla to'g'ri? (Shart mayli)",h:"Agar bilganimda edi...",o:["Если бы я знал, я скажу тебе","Если бы я знал, я сказал бы тебе","Если я знал бы, я скажу тебе","Если бы я знаю, я скажу тебе"],a:1,fb:"«Если бы... сказал бы» — o'tgan zamondagi shart (subjunktiv). Ikki tomonida ham «бы» kerak!"},
-  {t:"Grammatika",q:"«Будучи студентом, он много читал» — «будучи» nima?",h:"Fe'l shakllaridan biri",o:["Deeprichastie","Prichastie","Infinitiv","Sifat"],a:0,fb:"«Будучи» — deeprichastie (деепричастие) — fe'l holi. «Будучи» = bo'la turib, bo'lganida"},
-  {t:"Grammatika",q:"«Несмотря на то что» — qanday bog'lovchi?",h:"Qarama-qarshi ma'no",o:["Shart bog'lovchi","Sabab bog'lovchi","Zidlov bog'lovchi","Maqsad bog'lovchi"],a:2,fb:"«Несмотря на то что» = qaramasdan (zidlov). «Хотя» bilan sinonim, lekin rasmiyroq"},
-  {t:"Grammatika",q:"«Он устал, ___ продолжал работать» — qaysi so'z?",h:"Qarama-qarshilik",o:["потому что","поэтому","однако","следовательно"],a:2,fb:"«Однако» = lekin, biroq. U charchadi, biroq ishlashda davom etdi"},
-  {t:"Grammatika",q:"«Ему свойственно опаздывать» — «свойственно» nima ma'noda?",h:"Xususiyat bildirish",o:["Yomon ko'radi","Xos, odatiy holat","To'g'ri kelmaydi","Majbur"],a:1,fb:"«Свойственно» = xos, tabiatida bor, odati shu. «Ему свойственно» = unga xos"},
-  // URG'U (5)
-  {t:"Urg'u",q:"«Обеспе́чение» so'zida urg'u qayerda?",h:"Ta'minlash",o:["о-БЕС-pe-che-ni-ye","o-bes-PE-che-ni-ye","o-bes-pe-CHE-ni-ye","o-bes-pe-che-NI-ye"],a:2,fb:"«Обеспе́чение» — urg'u «пе»da: o-bes-PE-che-ni-ye. Ko'p odamlar «обеспечЕние» deb xato qiladi"},
-  {t:"Urg'u",q:"«Ходата́йство» so'zida urg'u?",h:"Ariza, murojaat (huquqiy atama)",o:["ХО-da-taystvo","ho-DA-taystvo","ho-da-TAY-stvo","ho-da-tay-STVO"],a:2,fb:"«Ходата́йство» — urg'u «та»da: ho-da-TAY-stvo. Yuridik atamalar urg'usi murakkab bo'ladi"},
-  {t:"Urg'u",q:"«Феноме́н» so'zida urg'u?",h:"Hodisa, fenomen",o:["ФЕ-no-men","fe-NO-men","fe-no-MEN","farqi yo'q"],a:2,fb:"«Феноме́н» — urg'u oxirida: fe-no-MEN. «Фено́мен» (2-bo'g'inda) — noto'g'ri!"},
-  {t:"Urg'u",q:"«Экспе́рт» so'zida urg'u?",h:"Mutaxassis",o:["ЭКС-pert","eks-PERT","farqi yo'q","ikkalasi to'g'ri"],a:1,fb:"«Экспе́рт» — urg'u ikkinchi bo'g'inda: eks-PERT. «Э́ксперт» — noto'g'ri!"},
-  {t:"Urg'u",q:"«Жалюзи́» so'zida urg'u?",h:"Deraza pardasi (jalyuzi)",o:["ЖА-lyu-zi","zha-LYU-zi","zha-lyu-ZI","farqi yo'q"],a:2,fb:"«Жалюзи́» — urg'u oxirida: zha-lyu-ZI. Bu so'z frantsuz tilidan kirib kelgan"},
+  // LUG'AT (5 ta)
+  {t:"Lug'at",q:"«Изощрённый» — bu nima ma'noda?",o:["Eski, eskirgan","Nozik, murakkab ishlangan","Oddiy, sodda","Tez, shoshilinch"],a:1},
+  {t:"Lug'at",q:"«Претендовать на что-то» — bu nima ma'noda?",o:["Voz kechmoq","Rad etmoq","Da'vo qilmoq","Qo'shilmoq"],a:2},
+  {t:"Lug'at",q:"«Впрочем» — bu qanday ma'noda ishlatiladi?",o:["Shuning uchun","Darvoqe, aytganday","Chunki","Albatta"],a:1},
+  {t:"Lug'at",q:"«Сопоставить» — bu nima ma'noda?",o:["Ajratmoq","Yig'moq","Taqqoslamoq","Tarqatmoq"],a:2},
+  {t:"Lug'at",q:"«Свойственно» — bu qanday ma'noda?",o:["Majburiy","Yomon","Xos, tabiatida bor","Noaniq"],a:2},
+  // GRAMMATIKA (5 ta)
+  {t:"Grammatika",q:"«Если бы я знал...» — davomi qanday bo'ladi?",o:["...я скажу тебе","...я скажу","...я сказал бы тебе","...я скажи тебе"],a:2},
+  {t:"Grammatika",q:"«Будучи студентом» — «будучи» so'zi nima vazifada?",o:["Sifat","Fe'l holida","Ot","Olmosh"],a:1},
+  {t:"Grammatika",q:"«Несмотря на то что» — bu qanday bog'lovchi?",o:["Sabab","Shart","Maqsad","Zidlov"],a:3},
+  {t:"Grammatika",q:"«Он устал, ___ продолжал работать» — qaysi so'z?",o:["следовательно","поэтому","однако","потому что"],a:2},
+  {t:"Grammatika",q:"«Тем не менее» — bu qaysi ma'noda?",o:["Shuning uchun","Masalan","Lekin, shu bilan birga","Chunki"],a:2},
+  // URG'U (5 ta)
+  {t:"Urg'u",q:"«Обеспечение» so'zida urg'u qayerda?",o:["о-БЕС-pe-che-ni-ye","o-bes-PE-che-ni-ye","o-bes-pe-CHE-ni-ye","o-bes-pe-che-NI-ye"],a:1},
+  {t:"Urg'u",q:"«Феномен» so'zida urg'u qayerda?",o:["ФЕ-no-men","fe-NO-men","fe-no-MEN","farqi yo'q"],a:2},
+  {t:"Urg'u",q:"«Эксперт» so'zida urg'u qayerda?",o:["ЭКС-pert","eks-PERT","farqi yo'q","ikkalasi to'g'ri"],a:1},
+  {t:"Urg'u",q:"«Жалюзи» so'zida urg'u qayerda?",o:["ЖА-lyu-zi","zha-LYU-zi","zha-lyu-ZI","farqi yo'q"],a:2},
+  {t:"Urg'u",q:"«Ходатайство» so'zida urg'u qayerda?",o:["ХО-da-taystvo","ho-DA-taystvo","ho-da-TAY-stvo","ho-da-tay-STVO"],a:2},
 ],
+
 C1: [
-  // LEKSIKA (5)
-  {t:"Lug'at",q:"«Превалировать» fe'li nima ma'no bildiradi?",h:"Akademik uslubdagi fe'l",o:["Yaxshilanmoq","Ustun kelmoq, ustunlik qilmoq","Yo'qolmoq","O'zgarmoq"],a:1,fb:"«Превалировать» = ustun bo'lmoq. «В данном регионе превалирует русскоязычное население»"},
-  {t:"Lug'at",q:"«Исчерпывающий» so'zining ma'nosi?",h:"To'liq, mukammal",o:["Qisqa","To'liq, har tomonlama","Noaniq","Qiyin"],a:1,fb:"«Исчерпывающий ответ» — to'liq, hech narsa qoldirmaydigan javob. «Исчерпать» = tugatamoq"},
-  {t:"Lug'at",q:"«Апеллировать к чему-либо» nima ma'no?",h:"Murojaat qilmoq",o:["Rad etmoq","Murojaat qilmoq, asoslanmoq","Qo'shilmoq","Taklif qilmoq"],a:1,fb:"«Апеллировать к закону» — qonunga murojaat qilmoq. «Апелляция» = apelatsiya"},
-  {t:"Lug'at",q:"«Имплицитный» so'zining ma'nosi?",h:"Falsafa va mantiq atamasi",o:["Aniq, ochiq aytilgan","Yashirin, bilvosita nazarda tutilgan","Muhim","Umumiy"],a:1,fb:"«Имплицитный» = bilvosita, yashirin. «Эксплицитный» = aniq, ochiq aytilgan — antonimi"},
-  {t:"Lug'at",q:"«Прерогатива» so'zi nima ma'noda?",h:"Huquq va imtiyoz",o:["Muammo","Faqat birovga xos imtiyoz/huquq","Vazifa","Qoida"],a:1,fb:"«Прерогатива» = faqat muayyan shaxs yoki organga xos imtiyoz. «Это ваша прерогатива»"},
-  // GRAMMATIKA (5)
-  {t:"Grammatika",q:"«Ввиду того что» qanday bog'lovchi?",h:"Sabab-oqibat munosabati",o:["Zidlov","Sabab bog'lovchi","Shart bog'lovchi","Maqsad bog'lovchi"],a:1,fb:"«Ввиду того что» = chunki, sababli. Rasmiy yozma uslubda qo'llaniladi"},
-  {t:"Grammatika",q:"Qaysi jumla rasmiy yozma uslubga mos?",h:"Rasmiy va norasmiy uslubni farqlang",o:["Короче, всё хорошо получилось","В целом результат оказался удовлетворительным","Всё норм, не переживай","Это, ну, типа сработало"],a:1,fb:"Rasmiy uslubda: aniq, betarafroq, to'liq jumlalar. So'zlashuv iboralari rasmiy hujjatda noto'g'ri"},
-  {t:"Grammatika",q:"«Несмотря на то что» va «хотя» — farqi?",h:"Nozik uslubiy farq",o:["Farqi yo'q","«Несмотря на то что» rasmiyroq, «хотя» neytral","«Хотя» rasmiyroq","Ikkalasi ham so'zlashuv tili"],a:1,fb:"«Несмотря на то что» — yozma rasmiy uslub uchun. «Хотя» — neytral, og'zaki va yozmada"},
-  {t:"Grammatika",q:"«Сколь бы сложным ни казалось...» — bu qanday konstruksiya?",h:"Murakkab grammatik shakl",o:["Oddiy shart","Ustunlik bildiruvchi yon gap","Imtiyoz bildiruvchi konstruksiya","Sabab gap"],a:2,fb:"«Сколь бы... ни» — imtiyoz bildiradi: «Qanchalik murakkab ko'rinmasin...»"},
-  {t:"Grammatika",q:"«Представляется очевидным» iborasi qanday uslubga xos?",h:"Rasmiy yozma uslub",o:["So'zlashuv","Badiiy adabiyot","Ilmiy va rasmiy uslub","Erkin uslub"],a:2,fb:"«Представляется очевидным» — ilmiy uslub: «Ko'rinadiki, bu aniq». So'zlashuvda «очевидно» ishlatiladi"},
-  // URG'U (5)
-  {t:"Urg'u",q:"«Генези́с» so'zida urg'u?",h:"Kelib chiqish, genesis",o:["ГЕ-ne-zis","ge-NE-zis","ge-ne-ZIS","farqi yo'q"],a:1,fb:"«Генезис» — urg'u ikkinchi bo'g'inda: ge-NE-zis. Yunoncha so'z: γένεσις"},
-  {t:"Urg'u",q:"«Дефи́с» so'zida urg'u?",h:"Tire belgisi (-)",o:["ДЕ-fis","de-FIS","farqi yo'q","ikkalasi to'g'ri"],a:1,fb:"«Дефи́с» — urg'u oxirida: de-FIS. «Де́фис» deyish — xato!"},
-  {t:"Urg'u",q:"«Некроло́г» so'zida urg'u?",h:"Marsiya, obituariy",o:["НЕ-kro-log","ne-KRO-log","ne-kro-LOG","farqi yo'q"],a:2,fb:"«Некроло́г» — urg'u oxirida: ne-kro-LOG. Yunoncha so'zlarda urg'u ko'pincha oxirida"},
-  {t:"Urg'u",q:"«Диало́г» so'zida urg'u?",h:"Ikki kishi o'rtasidagi suhbat",o:["ДИ-a-log","di-A-log","di-a-LOG","farqi yo'q"],a:2,fb:"«Диало́г» — urg'u oxirida: di-a-LOG. «Монолог», «каталог» — ham oxirida urg'u"},
-  {t:"Urg'u",q:"«Мышле́ние» so'zida urg'u?",h:"Tafakkur",o:["МЫШ-le-ni-ye","mysh-LE-ni-ye","mysh-le-NI-ye","farqi yo'q"],a:1,fb:"«Мышле́ние» — urg'u ikkinchi bo'g'inda: mysh-LE-ni-ye"},
+  // LUG'AT (5 ta)
+  {t:"Lug'at",q:"«Превалировать» — bu nima ma'noda?",o:["Yaxshilanmoq","Yo'qolmoq","Ustun kelmoq","O'zgarmoq"],a:2},
+  {t:"Lug'at",q:"«Исчерпывающий» — bu nima ma'noda?",o:["Qisqa","Noaniq","Qiyin","To'liq, har tomonlama"],a:3},
+  {t:"Lug'at",q:"«Апеллировать к чему-либо» — bu nima ma'noda?",o:["Rad etmoq","Murojaat qilmoq","Qo'shilmoq","Taklif qilmoq"],a:1},
+  {t:"Lug'at",q:"«Имплицитный» — bu nima ma'noda?",o:["Aniq, ochiq aytilgan","Muhim","Bilvosita, yashirin","Umumiy"],a:2},
+  {t:"Lug'at",q:"«Прерогатива» — bu nima ma'noda?",o:["Muammo","Vazifa","Qoida","Faqat birovga xos huquq"],a:3},
+  // GRAMMATIKA (5 ta)
+  {t:"Grammatika",q:"«Ввиду того что» — bu qanday bog'lovchi?",o:["Zidlov","Maqsad","Sabab","Shart"],a:2},
+  {t:"Grammatika",q:"Qaysi jumla rasmiy yozma uslubga mos?",o:["Короче, всё хорошо","Всё норм, не переживай","В целом результат оказался удовлетворительным","Это, ну, типа сработало"],a:2},
+  {t:"Grammatika",q:"«Несмотря на то что» — qaysi uslubda ko'proq ishlatiladi?",o:["Faqat og'zaki","Rasmiy yozma uslubda","Faqat she'riyatda","Kundalik suhbatda"],a:1},
+  {t:"Grammatika",q:"«Представляется очевидным» — bu qaysi uslubga xos?",o:["Kundalik suhbat","Badiiy adabiyot","Ilmiy va rasmiy uslub","Norasmiy uslub"],a:2},
+  {t:"Grammatika",q:"«Сколь бы сложным ни казалось» — bu nima ma'noda?",o:["Qanchalik murakkab bo'lmasin","Chunki murakkab","Murakkab sababli","Murakkab emas"],a:0},
+  // URG'U (5 ta)
+  {t:"Urg'u",q:"«Генезис» so'zida urg'u qayerda?",o:["ГЕ-ne-zis","ge-NE-zis","ge-ne-ZIS","farqi yo'q"],a:1},
+  {t:"Urg'u",q:"«Дефис» so'zida urg'u qayerda?",o:["ДЕ-fis","de-FIS","farqi yo'q","ikkalasi to'g'ri"],a:1},
+  {t:"Urg'u",q:"«Некролог» so'zida urg'u qayerda?",o:["НЕ-kro-log","ne-KRO-log","ne-kro-LOG","farqi yo'q"],a:2},
+  {t:"Urg'u",q:"«Диалог» so'zida urg'u qayerda?",o:["ДИ-a-log","di-A-log","di-a-LOG","farqi yo'q"],a:2},
+  {t:"Urg'u",q:"«Мышление» so'zida urg'u qayerda?",o:["МЫШ-le-ni-ye","mysh-LE-ni-ye","mysh-le-NI-ye","farqi yo'q"],a:1},
 ],
+
 C2: [
-  // LEKSIKA (5)
-  {t:"Lug'at",q:"«Отнюдь не» iborasi «не» dan qanday farq qiladi?",h:"Kuchaytirish vositasi",o:["Farqi yo'q","«Отнюдь не» inkorni kuchaytiradi va ta'kidlaydi","«Отнюдь не» faqat she'riyatda","«Отнюдь не» zaif inkor"],a:1,fb:"«Это отнюдь не просто» — bu umuman ham oddiy emas (kuchli inkor). «Не» dan kuchliroq"},
-  {t:"Lug'at",q:"«Паллиати́вный» so'zining ma'nosi?",h:"Tibbiyot va siyosatda ishlatiladi",o:["To'liq davolash","Vaqtinchalik yengillashtiruvchi, muammoni hal qilmaydigan","Yangi usul","Tez ta'sir qiluvchi"],a:1,fb:"«Паллиативный» = muammoni to'liq hal qilmay, vaqtinchalik yengillashtiradigan. «Паллиативная мера» = yarim chora"},
-  {t:"Lug'at",q:"«Конъюнктура» so'zining ma'nosi?",h:"Iqtisodiyot va siyosatda",o:["Shartnoma","Bozor vaziyati, sharoit","Koeffitsient","Qonun"],a:1,fb:"«Конъюнктура рынка» = bozor konyunkturasi, iqtisodiy vaziyat. Lotincha conjunctura"},
-  {t:"Lug'at",q:"«Прецедент» so'zini to'g'ri ishlatish qaysi?",h:"Yuridik atama",o:["Создать прецедент","Сделать прецедент","Произвести прецедент","Давать прецедент"],a:0,fb:"«Создать прецедент» — to'g'ri birikmа. «Прецедент» = avval bo'lgan va keyingi hollarga asos bo'ladigan narsa"},
-  {t:"Lug'at",q:"«Эвфемизм» nima?",h:"Nutq uslubi atamasi",o:["Qo'pol so'z","Qo'pol so'z o'rniga yumshoq ibora","She'riy san'at","Chet el so'zi"],a:1,fb:"«Эвфемизм» = qo'pol yoki odobsiz so'z o'rniga yumshoq ibora. Masalan: «ушёл из жизни» = o'ldi o'rniga"},
-  // GRAMMATIKA (5)
-  {t:"Grammatika",q:"«Тем не менее» va «однако» — nozik farqi nima?",h:"Rasmiy yozma uslub",o:["Farqi yo'q","«Тем не менее» kuchliroq zidlashuvni bildiradi","«Однако» og'zaki nutqda","Ikkalasi bir xil"],a:1,fb:"«Тем не менее» — kuchliroq, og'irroq zidlashuv. «Однако» — neytral. Ikkalasi yozma uslubda to'g'ri"},
-  {t:"Grammatika",q:"«Сей» olmoshi hozirgi rus tilida qanday qo'llaniladi?",h:"Arxaik so'z",o:["Kundalik nutqda ko'p ishlatiladi","Faqat yuridik va arxaik uslubda","Umuman ishlatilmaydi","Faqat she'riyatda"],a:1,fb:"«Сей» = bu (arxaik shakl). Hozir faqat «сей документ», «до сих пор» kabi barqaror iboralarda saqlanib qolgan"},
-  {t:"Grammatika",q:"«По мере того как» iborasi qanday ma'noda?",h:"Vaqt va miqdor bog'lovchisi",o:["Shunga qaramay","...sari, ...ga qarab (parallel o'sish)","Sababli","Maqsad uchun"],a:1,fb:"«По мере того как он говорил, все понимали» — u gapirgan sari, hamma tushuna boshladi"},
-  {t:"Grammatika",q:"«Дабы» bog'lovchisi qanday ma'noda?",h:"Arxaik bog'lovchi",o:["Chunki","Maqsad uchun (arxaik «чтобы»)","Lekin","Agar"],a:1,fb:"«Дабы» = «чтобы» ning arxaik shakli (maqsad). Yuridik va badiiy matnlarda uchraydi"},
-  {t:"Grammatika",q:"«Нежели» so'zi qanday qo'llaniladi?",h:"Qiyoslash",o:["Va","...dan ko'ra (arxaik «чем»)","Yoki","Lekin"],a:1,fb:"«Нежели» = «чем» ning arxaik varianti: «лучше, нежели прежде» = avvalgidan ko'ra yaxshiroq"},
-  // URG'U (5)
-  {t:"Urg'u",q:"«Мизерный» so'zida to'g'ri urg'u?",h:"Juda oz, arzimasday",o:["МИ-zer-ny","mi-ZER-ny","mi-zer-NY","farqi yo'q"],a:1,fb:"«Мизе́рный» — urg'u ikkinchi bo'g'inda: mi-ZER-ny. Fransuzcha «misère» dan"},
-  {t:"Urg'u",q:"«Ассиметрия» so'zida urg'u?",h:"Simmetriyanin yo'qligi",o:["ас-СИМ-met-ri-ya","as-sim-MET-ri-ya","as-sim-met-RI-ya","as-sim-met-ri-YA"],a:1,fb:"«Асси́мметрия» — urg'u ikkinchi bo'g'inda: as-SIM-met-ri-ya"},
-  {t:"Urg'u",q:"«Еретик» so'zida urg'u?",h:"Dinga qarshi fikrlovchi",o:["Е-re-tik","ye-RE-tik","ye-re-TIK","farqi yo'q"],a:2,fb:"«Еретик» — urg'u oxirida: ye-re-TIK. «Е́ретик» — eskirgan shakl, hozir «еретик»"},
-  {t:"Urg'u",q:"«Исчерпать» fe'lida urg'u?",h:"Tugatamoq, sarflamoq",o:["ис-ЧЕР-pat","is-cher-PAT","ИС-cher-pat","farqi yo'q"],a:1,fb:"«Исче́рпать» — urg'u ikkinchi bo'g'inda: is-CHER-pat. «Исчерпывающий» ham shu o'zakdan"},
-  {t:"Urg'u",q:"«Опто́вый» so'zida urg'u?",h:"Ulgurji savdo",o:["ОП-to-vy","op-TO-vy","op-to-VY","farqi yo'q"],a:1,fb:"«Опто́вый» — urg'u ikkinchi bo'g'inda: op-TO-vy. «О́птовый» — xato talaffuz!"},
+  // LUG'AT (5 ta)
+  {t:"Lug'at",q:"«Отнюдь не» — bu «не» dan qanday farq qiladi?",o:["Farqi yo'q","Inkorni kuchaytiradi","Faqat she'riyatda","Zaif inkor"],a:1},
+  {t:"Lug'at",q:"«Паллиативный» — bu nima ma'noda?",o:["To'liq davolash","Tez ta'sir qiluvchi","Vaqtinchalik yengillashtiradigan","Yangi usul"],a:2},
+  {t:"Lug'at",q:"«Конъюнктура» — bu nima ma'noda?",o:["Shartnoma","Koeffitsient","Qonun","Bozor vaziyati"],a:3},
+  {t:"Lug'at",q:"«Эвфемизм» — bu nima?",o:["Qo'pol so'z","She'riy san'at","Qo'pol so'z o'rniga yumshoq ibora","Chet el so'zi"],a:2},
+  {t:"Lug'at",q:"«Апория» — bu nima ma'noda?",o:["Yechim","Hal qilib bo'lmaydigan qarama-qarshilik","Savol","Mulohaza"],a:1},
+  // GRAMMATIKA (5 ta)
+  {t:"Grammatika",q:"«Тем не менее» va «однако» — qaysi biri kuchliroq zidlashuv bildiradi?",o:["Однако","Ikkalasi teng","Тем не менее","Farqi yo'q"],a:2},
+  {t:"Grammatika",q:"«Сей» olmoshi hozirgi rus tilida qanday qo'llaniladi?",o:["Kundalik nutqda ko'p","Umuman ishlatilmaydi","Faqat yuridik va arxaik uslubda","Faqat she'riyatda"],a:2},
+  {t:"Grammatika",q:"«По мере того как» — bu nima ma'noda?",o:["Shunga qaramay","Sababli","...sari, parallel o'sish","Maqsad uchun"],a:2},
+  {t:"Grammatika",q:"«Дабы» — bu qaysi so'zning arxaik shakli?",o:["потому что","однако","хотя","чтобы"],a:3},
+  {t:"Grammatika",q:"«Нежели» — bu qanday qo'llaniladi?",o:["Va ma'nosida","Yoki ma'nosida","...dan ko'ra ma'nosida","Lekin ma'nosida"],a:2},
+  // URG'U (5 ta)
+  {t:"Urg'u",q:"«Мизерный» so'zida urg'u qayerda?",o:["МИ-zer-ny","mi-ZER-ny","mi-zer-NY","farqi yo'q"],a:1},
+  {t:"Urg'u",q:"«Ассиметрия» so'zida urg'u qayerda?",o:["ас-СИМ-met-ri-ya","as-sim-MET-ri-ya","as-sim-met-RI-ya","farqi yo'q"],a:0},
+  {t:"Urg'u",q:"«Еретик» so'zida urg'u qayerda?",o:["Е-re-tik","ye-RE-tik","ye-re-TIK","farqi yo'q"],a:2},
+  {t:"Urg'u",q:"«Исчерпать» so'zida urg'u qayerda?",o:["ис-ЧЕР-pat","is-cher-PAT","ИС-cher-pat","farqi yo'q"],a:1},
+  {t:"Urg'u",q:"«Оптовый» so'zida urg'u qayerda?",o:["ОП-to-vy","op-TO-vy","op-to-VY","farqi yo'q"],a:1},
 ]
 };
 
-let selLvl=null, qs=[], cur=0, correct=0, answered=false;
+// Izohlar (feedback) — alohida, savoldan keyin ko'rsatiladi
+const FB = {
+A1:[
+  "«Здравствуйте» — rasmiy salomlashuv. Kundalik: «Привет»",
+  "«Спасибо» — rahmat. Javob: «Пожалуйста» (marhamat)",
+  "«Вода» — suv. «Хлеб» — non, «чай» — choy",
+  "«Яблоко» — olma. «Банан» — banan, «виноград» — uzum",
+  "«Где» — qayerda. Bu iborani yo'lda albatta bilish kerak!",
+  "«Книга» ayol jinsli so'z — egalik olmoshi «моя» bo'ladi",
+  "«Стол» erkak jinsli — egalik olmoshi «мой» bo'ladi",
+  "Ko'plik uchun -и/-ы qo'shimchasi: книга → книги",
+  "Hozirgi zamonda «есть» tushib qoladi: «Я студент» = Men talabaman",
+  "«Читаю» — hozirgi zamon, 1-shaxs, birlik",
+  "«Хорошо» — urg'u oxirida: ho-ro-SHO",
+  "«Спасибо» — urg'u ikkinchi bo'g'inda: spa-SI-bo",
+  "«Молоко» — urg'u oxirida: mo-lo-KO",
+  "«Доброе утро» = Xayrli tong!",
+  "«Пока» — norasmiy xayrlashuv. Rasmiy: «До свидания»",
+],
+A2:[
+  "«Сколько стоит?» — narxni so'rash uchun. «Сколько» — qancha",
+  "«Направо» — o'ngga. «Налево» — chapga. «Прямо» — to'g'riga",
+  "«Налево» — chapga. «Направо» — o'ngga",
+  "«Открыто» — ochiq. «Закрыто» — yopiq",
+  "«Голова» — bosh. «Болит» — og'riydi",
+  "«Живу» — men yashayman. «Живёт» — u yashaydi",
+  "«С молоком» — sutli. «Без молока» — sutsiz",
+  "«У меня есть» = menda bor",
+  "«Шёл» — bormoq fe'lining o'tgan zamoni (erkak). Ayol: «шла»",
+  "«Лет» — 5 dan yuqori sonlar bilan. «Год» — 1 yil, «года» — 2-4 yil",
+  "«Магазин» — urg'u ikkinchi bo'g'inda: ma-GA-zin",
+  "«Телефон» — urg'u oxirida: te-le-FON",
+  "«До свидания» — urg'u «да»da: do-svi-DA-ni-ya",
+  "«Понимаю» — urg'u uchinchi bo'g'inda: po-ni-MA-yu",
+  "«Ресторан» — urg'u oxirida: res-to-RAN",
+],
+B1:[
+  "«Несмотря на дождь, мы пошли» — yomg'irga qaramasdan bordik",
+  "«Поэтому» — shuning uchun. «Потому что» — chunki",
+  "«Кажется, он прав» — shekilli, u haq",
+  "«Расскажите подробнее» — batafsilroq aytib bering",
+  "«Вряд ли он придёт» — u kelishi dargumon",
+  "«С» predlogi bilan: с другом, с братом, с сестрой",
+  "«Люблю» — chuqur his, «нравится» — umumiy yoqish",
+  "«Хороший фильм» — yaxshi film (sifat)",
+  "«Он хорошо говорит» — u yaxshi gapiradi (ravish)",
+  "«В течение» — davomida. «Через» — keyin",
+  "«Звонит» — urg'u oxirida: zvo-NIT. «Звонит» emas «Зво́нит»!",
+  "«Каталог» — urg'u ikkinchi bo'g'inda: ka-TA-log",
+  "Adabiy me'yor: «Договор» — urg'u oxirida: do-go-VOR",
+  "«Красивее» — urg'u ikkinchi bo'g'inda: kra-SI-ve-ye",
+  "«Включит» — urg'u oxirida: vklyу-CHIT",
+],
+B2:[
+  "«Изощрённый вкус» — nozik did. Juda nozik tarzda ishlangan",
+  "«Претендовать на должность» — lavozimga da'vogar bo'lmoq",
+  "«Впрочем» — fikrni to'ldirish yoki o'zgartirish uchun",
+  "«Сопоставьте два текста» — ikki matnni taqqoslang",
+  "«Ему свойственно опаздывать» — kechikish unga xos",
+  "«Если бы... сказал бы» — ikki tomonida ham «бы» kerak",
+  "«Будучи» — fe'l holida ishlaydi: «bo'la turib»",
+  "«Несмотря на то что» — zidlov: qaramasdan",
+  "«Однако» — lekin, biroq ma'nosida",
+  "«Тем не менее» — lekin, shu bilan birga",
+  "«Обеспечение» — urg'u ikkinchi bo'g'inda: o-bes-PE-che-ni-ye",
+  "«Феномен» — urg'u oxirida: fe-no-MEN",
+  "«Эксперт» — urg'u ikkinchi bo'g'inda: eks-PERT",
+  "«Жалюзи» — urg'u oxirida: zha-lyu-ZI. Frantsuzcha so'z",
+  "«Ходатайство» — urg'u uchinchi bo'g'inda: ho-da-TAY-stvo",
+],
+C1:[
+  "«Превалировать» — ustun bo'lmoq, ko'proq uchramoq",
+  "«Исчерпывающий ответ» — hech narsa qoldirmaydigan to'liq javob",
+  "«Апеллировать к закону» — qonunga murojaat qilmoq",
+  "«Имплицитный» — bilvosita. «Эксплицитный» — aniq, ochiq",
+  "«Это ваша прерогатива» — bu sizning huquqingiz",
+  "«Ввиду того что» — chunki, sababli. Rasmiy uslubda",
+  "Rasmiy uslubda aniq, betarafroq, to'liq jumlalar ishlatiladi",
+  "«Несмотря на то что» — rasmiy. «Хотя» — neytral",
+  "«Представляется очевидным» — ilmiy uslubda «ko'rinadiki»",
+  "«Сколь бы... ни» — qanchalik bo'lmasin ma'nosida",
+  "«Генезис» — urg'u ikkinchi bo'g'inda: ge-NE-zis",
+  "«Дефис» — urg'u oxirida: de-FIS",
+  "«Некролог» — urg'u oxirida: ne-kro-LOG",
+  "«Диалог» — urg'u oxirida: di-a-LOG. «Монолог» ham shunday",
+  "«Мышление» — urg'u ikkinchi bo'g'inda: mysh-LE-ni-ye",
+],
+C2:[
+  "«Отнюдь не просто» — umuman ham oddiy emas (kuchli inkor)",
+  "«Паллиативная мера» — muammoni hal qilmay vaqtinchalik yengillashtirish",
+  "«Конъюнктура рынка» — bozor vaziyati",
+  "«Ушёл из жизни» — o'ldi o'rniga yumshoq ibora",
+  "«Апория» — hal qilib bo'lmaydigan mantiqiy qarama-qarshilik",
+  "«Тем не менее» — kuchliroq zidlashuv. «Однако» — neytral",
+  "«Сей» faqat «до сих пор», «сей документ» kabi iboralarda",
+  "«По мере того как он говорил» — u gapirgan sari",
+  "«Дабы» — «чтобы» ning arxaik shakli, maqsad bildiradi",
+  "«Лучше, нежели прежде» — avvalgidan ko'ra yaxshiroq",
+  "«Мизерный» — urg'u ikkinchi bo'g'inda: mi-ZER-ny",
+  "«Ассиметрия» — urg'u birinchi bo'g'inda: AS-sim-met-ri-ya",
+  "«Еретик» — urg'u oxirida: ye-re-TIK",
+  "«Исчерпать» — urg'u ikkinchi bo'g'inda: is-CHER-pat",
+  "«Оптовый» — urg'u ikkinchi bo'g'inda: op-TO-vy",
+]
+};
 
-function pickLevel(lvl) {
-  selLvl = lvl;
-  const info = LVL_INFO[lvl];
-  Object.keys(LVL_INFO).forEach(l => {
-    const c = document.getElementById('card-'+l);
-    c.style.borderColor = '';
-    c.style.transform = '';
-    c.style.boxShadow = '';
-    c.style.background = '';
+let selLvl=null,qs=[],cur=0,correct=0,answered=false;
+
+function pickLevel(lvl){
+  selLvl=lvl;
+  const info=LVL_INFO[lvl];
+  Object.keys(LVL_INFO).forEach(l=>{
+    const c=document.getElementById('card-'+l);
+    c.style.borderColor='';c.style.transform='';c.style.boxShadow='';c.style.background='';
   });
-  const card = document.getElementById('card-'+lvl);
-  card.style.borderColor = info.color;
-  card.style.transform = 'translateY(-5px)';
-  card.style.boxShadow = `0 12px 32px ${info.color}28`;
-  card.style.background = info.bg;
-
-  const banner = document.getElementById('selBanner');
-  banner.style.display = 'flex';
-  banner.style.background = info.bg;
-  banner.style.border = `1px solid ${info.color}50`;
-  banner.style.borderRadius = '16px';
-  banner.style.padding = '16px 22px';
-  document.getElementById('sbLvl').textContent = lvl;
-  document.getElementById('sbLvl').style.color = info.color;
-  document.getElementById('sbTitle').textContent = `${info.emoji} ${info.name} darajasi tanlandi`;
-  document.getElementById('sbSub').textContent = `Sizga mos 15 ta savol tayyorlanadi (lug'at + grammatika + urg'u)`;
-
-  const btn = document.getElementById('startBtn');
-  btn.disabled = false;
-  btn.textContent = `${lvl} testini boshlash →`;
+  const card=document.getElementById('card-'+lvl);
+  card.style.borderColor=info.color;card.style.transform='translateY(-5px)';
+  card.style.boxShadow=`0 12px 32px ${info.color}28`;card.style.background=info.bg;
+  const banner=document.getElementById('selBanner');
+  banner.style.display='flex';banner.style.background=info.bg;
+  banner.style.border=`1px solid ${info.color}50`;banner.style.borderRadius='16px';banner.style.padding='16px 22px';
+  document.getElementById('sbLvl').textContent=lvl;
+  document.getElementById('sbLvl').style.color=info.color;
+  document.getElementById('sbTitle').textContent=`${info.emoji} ${info.name} darajasi tanlandi`;
+  document.getElementById('sbSub').textContent='15 ta savol: lug\'at + grammatika + urg\'u';
+  const btn=document.getElementById('startBtn');
+  btn.disabled=false;btn.textContent=`${lvl} testini boshlash →`;
 }
 
-function startQuiz() {
-  if (!selLvl) return;
-  document.getElementById('mainHeader').style.display = 'none';
-  qs = [...QS[selLvl]].sort(() => Math.random() - 0.5);
-  cur = 0; correct = 0;
-  showScr('quizScreen');
-  renderQ();
+function startQuiz(){
+  if(!selLvl)return;
+  qs=[...QS[selLvl]].map((q,i)=>({...q,idx:i})).sort(()=>Math.random()-.5);
+  cur=0;correct=0;
+  document.getElementById('mainHeader') && (document.getElementById('mainHeader').style.display='none');
+  showScr('quizScreen');renderQ();
 }
 
-function showScr(id) {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+function showScr(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
 
-function renderQ() {
-  answered = false;
-  const q = qs[cur], total = qs.length;
-  document.getElementById('qCtr').textContent = `Savol ${cur+1} / ${total}`;
-  document.getElementById('scoreDisp').textContent = `✓ ${correct} ta to'g'ri`;
-  document.getElementById('pFill').style.width = `${(cur/total)*100}%`;
-  document.getElementById('qNum').textContent = cur+1;
-  document.getElementById('qCat').textContent = `${selLvl} • ${q.t}`;
-  document.getElementById('qText').textContent = q.q;
-  document.getElementById('qHint').textContent = q.h ? `💡 ${q.h}` : '';
-  const fb = document.getElementById('fbBox');
-  fb.className = 'fb'; fb.textContent = '';
-  document.getElementById('nxtBtn').style.display = 'none';
-  const wrap = document.getElementById('optsWrap');
-  wrap.innerHTML = '';
-  const div = document.createElement('div');
-  div.className = 'opts';
-  ['A','B','C','D'].forEach((L, i) => {
-    if (q.o[i] === undefined) return;
-    const btn = document.createElement('button');
-    btn.className = 'opt';
-    btn.innerHTML = `<span class="opt-l">${L}</span> ${q.o[i]}`;
-    btn.onclick = () => pick(i);
+function renderQ(){
+  answered=false;
+  const q=qs[cur],total=qs.length;
+  document.getElementById('qCtr').textContent=`Savol ${cur+1} / ${total}`;
+  document.getElementById('scoreDisp').textContent=`✓ ${correct} ta to'g'ri`;
+  document.getElementById('pFill').style.width=`${(cur/total)*100}%`;
+  document.getElementById('qNum').textContent=cur+1;
+  document.getElementById('qCat').textContent=`${selLvl} • ${q.t}`;
+  document.getElementById('qText').textContent=q.q;
+  const fb=document.getElementById('fbBox');fb.className='fb';fb.textContent='';
+  document.getElementById('nxtBtn').style.display='none';
+  const wrap=document.getElementById('optsWrap');wrap.innerHTML='';
+  const div=document.createElement('div');div.className='opts';
+  ['A','B','C','D'].forEach((L,i)=>{
+    if(q.o[i]===undefined)return;
+    const btn=document.createElement('button');
+    btn.className='opt';
+    btn.innerHTML=`<span class="opt-l">${L}</span> ${q.o[i]}`;
+    btn.onclick=()=>pick(i);
     div.appendChild(btn);
   });
   wrap.appendChild(div);
 }
 
-function pick(chosen) {
-  if (answered) return;
-  answered = true;
-  const q = qs[cur];
-  const ok = chosen === q.a;
-  document.querySelectorAll('.opt').forEach((b, i) => {
+function pick(chosen){
+  if(answered)return;answered=true;
+  const q=qs[cur];const ok=chosen===q.a;
+  document.querySelectorAll('.opt').forEach((b,i)=>{
     b.classList.add('disabled');
-    if (i === q.a) b.classList.add('correct');
-    if (i === chosen && !ok) b.classList.add('wrong');
+    if(i===q.a)b.classList.add('correct');
+    if(i===chosen&&!ok)b.classList.add('wrong');
   });
-  if (ok) correct++;
-  const fb = document.getElementById('fbBox');
-  fb.className = `fb show ${ok ? 'ok' : 'bad'}`;
-  fb.textContent = ok ? `✓ ${q.fb}` : `✗ To'g'ri javob: «${q.o[q.a]}». ${q.fb}`;
-  document.getElementById('nxtBtn').style.display = 'flex';
+  if(ok)correct++;
+  const fb=document.getElementById('fbBox');
+  const fbText=FB[selLvl][q.idx];
+  fb.className=`fb show ${ok?'ok':'bad'}`;
+  fb.textContent=ok?`✓ ${fbText}`:`✗ To'g'ri javob: «${q.o[q.a]}». ${fbText}`;
+  document.getElementById('nxtBtn').style.display='flex';
 }
 
-function nextQ() {
+function nextQ(){
   cur++;
-  if (cur >= qs.length) { showScr('loadScreen'); setTimeout(showResult, 2000); }
+  if(cur>=qs.length){showScr('loadScreen');setTimeout(showResult,2000);}
   else renderQ();
 }
 
-function showResult() {
-  const pct = Math.round((correct / qs.length) * 100);
-  const info = LVL_INFO[selLvl];
-  const lvls = ['A1','A2','B1','B2','C1','C2'];
-  const idx = lvls.indexOf(selLvl);
-  let actual = selLvl;
-  if (pct >= 80 && idx < lvls.length-1) actual = lvls[idx+1];
-  else if (pct < 40 && idx > 0) actual = lvls[idx-1];
-  const aInfo = LVL_INFO[actual];
-
-  const badge = document.getElementById('resBadge');
-  badge.textContent = actual;
-  badge.style.background = aInfo.bg;
-  badge.style.color = aInfo.color;
-  badge.style.border = `2px solid ${aInfo.color}`;
-
-  document.getElementById('resTitle').textContent = `${actual} — ${aInfo.name}`;
-  document.getElementById('resSub').textContent = getDesc(actual);
-  document.getElementById('stCor').textContent = `${correct}/15`;
-  document.getElementById('stPct').textContent = `${pct}%`;
-  document.getElementById('stGrade').textContent = pct>=90?'A+':pct>=80?'A':pct>=70?'B':pct>=60?'C':'D';
-  document.getElementById('aiTxt').innerHTML = getAI(selLvl, actual, pct);
-  document.getElementById('rmWrap').innerHTML = getRm(actual);
+function showResult(){
+  const pct=Math.round((correct/qs.length)*100);
+  const info=LVL_INFO[selLvl];
+  const lvls=['A1','A2','B1','B2','C1','C2'];
+  const idx=lvls.indexOf(selLvl);
+  let actual=selLvl;
+  if(pct>=80&&idx<lvls.length-1)actual=lvls[idx+1];
+  else if(pct<40&&idx>0)actual=lvls[idx-1];
+  const aInfo=LVL_INFO[actual];
+  const badge=document.getElementById('resBadge');
+  badge.textContent=actual;badge.style.background=aInfo.bg;
+  badge.style.color=aInfo.color;badge.style.border=`2px solid ${aInfo.color}`;
+  document.getElementById('resTitle').textContent=`${actual} — ${aInfo.name}`;
+  document.getElementById('resSub').textContent=getDesc(actual);
+  document.getElementById('stCor').textContent=`${correct}/15`;
+  document.getElementById('stPct').textContent=`${pct}%`;
+  document.getElementById('stGrade').textContent=pct>=90?'A+':pct>=80?'A':pct>=70?'B':pct>=60?'C':'D';
+  document.getElementById('aiTxt').innerHTML=getAI(selLvl,actual,pct);
+  document.getElementById('rmWrap').innerHTML=getRm(actual);
   showScr('resScreen');
 }
 
-function getDesc(l) {
-  return {
+function getDesc(l){
+  return{
     A1:"Siz rus tilini endigina o'rganayapsiz. Asosiy so'zlar va iboralarni bilasiz.",
     A2:"Siz kundalik hayotdagi oddiy gaplarni tushunasiz va so'zlasha olasiz.",
     B1:"Siz tanish mavzularda mustaqil muloqot qila olasiz. Yaxshi progress!",
-    B2:"Siz murakkab matnlarni tushunasiz va ona tilidagilar bilan muloqot qila olasiz.",
-    C1:"Siz tilni mo'l-ko'l va samarali ishlatа olasiz — ilmiy va kasbiy sohalarda ham.",
-    C2:"Mukammal daraja! Siz rus tilini ona tilidagilar kabi egallагансиз.",
+    B2:"Siz murakkab matnlarni tushunasiz va erkin muloqot qila olasiz.",
+    C1:"Siz tilni samarali ishlatа olasiz — ilmiy va kasbiy sohalarda ham.",
+    C2:"Mukammal daraja! Siz rus tilini ona tilidagilar kabi egallаgansiz.",
   }[l]||'';
 }
 
-function getAI(sel, actual, pct) {
-  const lvls = ['A1','A2','B1','B2','C1','C2'];
-  let html = `<p>Siz <strong>${sel}</strong> darajasini tanladingiz va <strong>${pct}%</strong> natija ko'rsatdingiz.</p><br>`;
-  if (actual !== sel) {
-    if (lvls.indexOf(actual) > lvls.indexOf(sel))
-      html += `<p>🎉 <strong>Tabriklaymiz!</strong> Natijangiz ${sel} dan yuqori — haqiqiy darajangiz <strong>${actual}</strong> ga yaqin!</p>`;
+function getAI(sel,actual,pct){
+  const lvls=['A1','A2','B1','B2','C1','C2'];
+  let html=`<p>Siz <strong>${sel}</strong> darajasini tanladingiz va <strong>${pct}%</strong> natija ko'rsatdingiz.</p><br>`;
+  if(actual!==sel){
+    if(lvls.indexOf(actual)>lvls.indexOf(sel))
+      html+=`<p>🎉 Natijangiz juda yaxshi — haqiqiy darajangiz <strong>${actual}</strong> ga yaqin ko'rinadi!</p>`;
     else
-      html += `<p>💪 ${sel} savollari biroz qiyin ko'rindi. <strong>${actual}</strong> darajasidan boshlash tavsiya etiladi.</p>`;
-  } else {
-    if (pct>=80) html += `<p>🌟 Ajoyib! ${sel} darajasini mustahkam egallаgansiz. Keyingi darajaga o'tishga tayyor!</p>`;
-    else if (pct>=60) html += `<p>👍 Yaxshi natija! ${sel} darajasida yetarli bilim bor, ammo yana mashq kerak.</p>`;
-    else html += `<p>📚 ${sel} darajasi hali mos emas. Ko'proq mashq qiling va qayta sinab ko'ring!</p>`;
+      html+=`<p>💪 <strong>${sel}</strong> savollari biroz qiyin ko'rindi. <strong>${actual}</strong> darajasidan boshlash tavsiya etiladi.</p>`;
+  }else{
+    if(pct>=80)html+=`<p>🌟 Ajoyib! ${sel} darajasini mustahkam egallаgansiz. Keyingi darajaga o'tishga tayyor!</p>`;
+    else if(pct>=60)html+=`<p>👍 Yaxshi natija! Ammo biroz yana mustahkamlash kerak.</p>`;
+    else html+=`<p>📚 Ko'proq mashq qiling va qayta sinab ko'ring!</p>`;
   }
-  html += `<br><p>💡 <strong>Tavsiya:</strong> ${{
-    A1:"Kuniga 15-20 daqiqa yangi so'zlar yodlang. Ruscha multfilm va bolalar videolarini tomosha qiling.",
-    A2:"Oddiy dialoglarni mashq qiling. Ruscha qo'shiqlar tinglash va ijtimoiy tarmoqlarda ruscha kontent o'qish samarali.",
-    B1:"Podkastlar va videolarni subtitrl bilan tomosha qiling. Kundalik daftarchagizga ruscha yozing.",
-    B2:"Gazeta maqolalari o'qing. Ona tili so'zlovchilari bilan muloqot praktikasi o'tkazing.",
-    C1:"Akademik va kasbiy matnlarni o'qing. Murakkab mavzularda fikr yozing va tuzating.",
-    C2:"Tilning nozik jihatlarini — uslublar, dialektlar, tarixiy o'zgarishlarni o'rganing.",
-  }[sel]||''}</p>`;
+  const recs={
+    A1:"Zamira Turganbayeva kanalida A1 darajasiga mo'ljallangan kundalik mashqlarni bajaring — alifbo, asosiy so'zlar va birinchi dialoglar.",
+    A2:"Zamira Turganbayeva kanalida A2 mashqlarini bajaring — do'konda, transportda va kundalik hayotdagi so'zlashuv namunalari.",
+    B1:"Zamira Turganbayeva kanalida B1 darslarini kuzating — grammatika, amaliy suhbat va audio mashqlar.",
+    B2:"Zamira Turganbayeva kanalida B2 materiallaridan foydalaning — murakkab dialoglar, kino tahlili va yozma uslub.",
+    C1:"Zamira Turganbayeva kanalida ilg'or darsdagi akademik matnlar va nozik grammatika mashqlarini bajaring.",
+    C2:"Zamira Turganbayeva kanalida eng yuqori darajadagi materiallar va nozik uslub mashqlarini bajaring.",
+  };
+  html+=`<br><p>💡 <strong>Tavsiya:</strong> ${recs[sel]||''}</p>`;
   return html;
 }
 
-function getRm(l) {
-  const s = {
-    A1:[{i:"📚",t:"Asosiy 500 so'z",d:"Kuniga 10 so'zdan yodlang — 50 kunda asos tayyor"},{i:"🗣️",t:"Fonetika",d:"Rus alifbosi va tovushlarini o'rganing — 2 hafta"},{i:"📝",t:"Oddiy jumlalar",d:"Men/sen/u + fe'l formalari — 1 oy"},{i:"🎯",t:"A2 ga o'tish",d:"3-4 oyda A2 darajasiga chiqing"}],
-    A2:[{i:"🎙️",t:"Dialog mashqlari",d:"Do'kon, mehmonxona, transportda so'zlashuv"},{i:"📖",t:"Grammatika asoslari",d:"Padejlar — 6 ta padejni o'rganing"},{i:"🎬",t:"Media",d:"Subtitrl bilan ruscha seriallar ko'ring"},{i:"🎯",t:"B1 ga o'tish",d:"4-6 oyda B1 darajasiga chiqing"}],
-    B1:[{i:"📰",t:"Matn o'qish",d:"Oddiy yangiliklar va maqolalar o'qing"},{i:"✍️",t:"Yozish pratikasi",d:"Kunlik daftarcha yuriting — ruscha"},{i:"🎧",t:"Tinglash",d:"Podkast va radio — kuniga 20 daqiqa"},{i:"🎯",t:"B2 ga o'tish",d:"6-8 oyda B2 darajasiga chiqing"}],
-    B2:[{i:"📚",t:"Adabiy matnlar",d:"Ruscha romanlar va hikoyalar"},{i:"💬",t:"Ona tili so'zlovchilari",d:"Language exchange yoki online konversatsiya"},{i:"🎭",t:"Murakkab mavzular",d:"Siyosat, iqtisod, fan haqida muloqot"},{i:"🎯",t:"C1 ga o'tish",d:"8-12 oyda C1 darajasiga chiqing"}],
-    C1:[{i:"🏛️",t:"Akademik til",d:"Ilmiy maqolalar va monografiyalar"},{i:"✒️",t:"Mukammal yozuv",d:"Rasmiy va norasmiy uslublar"},{i:"🎤",t:"Nutq nozikliklari",d:"Idiomalar, metaforalar, yumor"},{i:"🎯",t:"C2 ga o'tish",d:"12+ oyda C2 darajasiga chiqing"}],
-    C2:[{i:"🌟",t:"Mukammal daraja!",d:"Siz rus tilini puxta bilasiz"},{i:"📜",t:"Sertifikat",d:"TRKI imtihonini topshiring"},{i:"🎓",t:"Tilni o'rgating",d:"Boshqalarga yordam berish — eng yaxshi praktika"}],
+function getRm(l){
+  const s={
+    A1:[{i:"📚",t:"Asosiy 500 so'z",d:"Kuniga 10 so'zdan yodlang"},{i:"🗣️",t:"Fonetika",d:"Rus alifbosi va tovushlarini o'rganing"},{i:"📝",t:"Oddiy jumlalar",d:"Men/sen/u + fe'l formalari"},{i:"🎯",t:"A2 ga o'tish",d:"3-4 oyda A2 darajasiga chiqing"}],
+    A2:[{i:"🎙️",t:"Dialog mashqlari",d:"Do'kon, mehmonxona, transportda so'zlashuv"},{i:"📖",t:"Grammatika asoslari",d:"Padejlarni o'rganing"},{i:"🎬",t:"Media",d:"Ruscha multfilm va seriallar ko'ring"},{i:"🎯",t:"B1 ga o'tish",d:"4-6 oyda B1 darajasiga chiqing"}],
+    B1:[{i:"📰",t:"Matn o'qish",d:"Oddiy yangiliklar va maqolalar"},{i:"✍️",t:"Yozish",d:"Kundalik daftarcha yuriting — ruscha"},{i:"🎧",t:"Tinglash",d:"Podkast va radio — kuniga 20 daqiqa"},{i:"🎯",t:"B2 ga o'tish",d:"6-8 oyda B2 darajasiga chiqing"}],
+    B2:[{i:"📚",t:"Adabiy matnlar",d:"Ruscha romanlar va hikoyalar"},{i:"💬",t:"Amaliyot",d:"Ona tili so'zlovchilari bilan muloqot"},{i:"🎭",t:"Murakkab mavzular",d:"Siyosat, iqtisod, fan haqida muloqot"},{i:"🎯",t:"C1 ga o'tish",d:"8-12 oyda C1 darajasiga chiqing"}],
+    C1:[{i:"🏛️",t:"Akademik til",d:"Ilmiy maqolalar va monografiyalar"},{i:"✒️",t:"Mukammal yozuv",d:"Rasmiy va norasmiy uslublar"},{i:"🎤",t:"Nutq nozikliklari",d:"Idiomalar va uslub farqlari"},{i:"🎯",t:"C2 ga o'tish",d:"12+ oyda C2 darajasiga chiqing"}],
+    C2:[{i:"🌟",t:"Mukammal daraja!",d:"Siz rus tilini puxta bilasiz"},{i:"📜",t:"Sertifikat",d:"TRKI imtihonini topshiring"},{i:"🎓",t:"Tilni o'rgating",d:"Boshqalarga yordam berish — eng yaxshi pratika"}],
   };
-  return (s[l]||s.B1).map(x=>`<div class="rm-item"><div class="rm-icon">${x.i}</div><div class="rm-text"><strong>${x.t}</strong><span>${x.d}</span></div></div>`).join('');
+  return(s[l]||s.B1).map(x=>`<div class="rm-item"><div class="rm-icon">${x.i}</div><div class="rm-text"><strong>${x.t}</strong><span>${x.d}</span></div></div>`).join('');
 }
 
-function goHome() {
-  selLvl = null;
-  document.getElementById('mainHeader').style.display = 'block';
-  Object.keys(LVL_INFO).forEach(l => {
-    const c = document.getElementById('card-'+l);
-    c.style.borderColor = '';
-    c.style.transform = '';
-    c.style.boxShadow = '';
-    c.style.background = '';
+function goHome(){
+  selLvl=null;
+  Object.keys(LVL_INFO).forEach(l=>{
+    const c=document.getElementById('card-'+l);
+    c.style.borderColor='';c.style.transform='';c.style.boxShadow='';c.style.background='';
   });
-  document.getElementById('selBanner').style.display = 'none';
-  const btn = document.getElementById('startBtn');
-  btn.disabled = true;
-  btn.textContent = 'Darajani tanlang ↑';
+  document.getElementById('selBanner').style.display='none';
+  const btn=document.getElementById('startBtn');
+  btn.disabled=true;btn.textContent='Darajani tanlang ↑';
   showScr('introScreen');
 }
 
-function shareRes() {
-  const t = document.getElementById('resTitle').textContent;
-  const p = document.getElementById('stPct').textContent;
-  const txt = `Men rus tili testini topshirdim! Natijam: ${t} (${p}) 🇷🇺`;
-  if (navigator.share) navigator.share({title:'Rus tili darajam', text: txt});
+function shareRes(){
+  const t=document.getElementById('resTitle').textContent;
+  const p=document.getElementById('stPct').textContent;
+  const txt=`Men rus tili testini topshirdim! Natijam: ${t} (${p}) 🇷🇺`;
+  if(navigator.share)navigator.share({title:'Rus tili darajam',text:txt});
   else navigator.clipboard?.writeText(txt).then(()=>alert('Matn nusxalandi!'));
 }
 </script>
